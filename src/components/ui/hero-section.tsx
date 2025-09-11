@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
-import profileImage from "@/assets/profile-image.jpg";
+import profileImage from "@/assets/profile-image.png";
 
 const HeroSection = () => {
   const scrollToAbout = () => {
@@ -32,7 +32,7 @@ const HeroSection = () => {
           {/* Name and Title */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Tu Nombre
+              Enrique Barroso
             </span>
           </h1>
           
@@ -41,7 +41,7 @@ const HeroSection = () => {
           </p>
           
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Creando experiencias digitales excepcionales con tecnologías modernas
+            Transformo ideas en experiencias digitales con código, creatividad y un toque de IA.
           </p>
 
           {/* Social Links */}
