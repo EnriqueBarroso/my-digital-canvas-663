@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       image:
         "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=1200&h=675&fit=crop&auto=format",
       tech: ["DALL·E", "Claude/Gemini", "Moderation", "Workflows"],
-      liveUrl: "#",
+      liveUrl: "https://ai-driven-digital-9wyb.vercel.app/",
       githubUrl: "#",
     },
     {
