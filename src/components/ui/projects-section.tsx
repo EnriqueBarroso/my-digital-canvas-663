@@ -118,39 +118,35 @@ const ProjectsSection = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1"
-                    asChild
-                  >
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Abrir proyecto en vivo: ${project.title}`}
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Ver proyecto
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1"
-                    asChild
-                  >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Abrir repositorio: ${project.title}`}
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      Código
-                    </a>
-                  </Button>
+                  {project.liveUrl && project.liveUrl !== "#" && (
+                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                      <a
+                        href={project.liveUrl}
+                        target={project.liveUrl.startsWith("/") ? "_self" : "_blank"}
+                        rel="noreferrer"
+                        aria-label={`Abrir proyecto en vivo: ${project.title}`}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Ver proyecto
+                      </a>
+                    </Button>
+                  )}
+
+                  {project.githubUrl && project.githubUrl !== "#" && (
+                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Abrir repositorio: ${project.title}`}
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Código
+                      </a>
+                    </Button>
+                  )}
                 </div>
+
               </div>
             </Card>
           ))}
@@ -163,7 +159,7 @@ const ProjectsSection = () => {
             asChild
           >
             <a
-              href="https://github.com/tu-usuario?tab=repositories"
+              href="https://github.com/EnriqueBarroso?tab=repositories"
               target="_blank"
               rel="noreferrer"
             >
