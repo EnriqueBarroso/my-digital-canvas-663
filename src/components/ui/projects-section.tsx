@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { useCallback } from "react";
 
 const ProjectsSection = () => {
   const projects = [
@@ -46,14 +47,14 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      title: "Task Management App",
+      title: "Vibras Path Forge",
       description:
-        "Gestión de tareas colaborativa con tiempo real, notificaciones push y PWA.",
+        "Landing con estética fitness/tech, optimizada para conversión, SEO y despliegue en Vercel.",
       image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=675&fit=crop&auto=format",
-      tech: ["Vue.js", "Firebase", "PWA", "Socket.io"],
-      liveUrl: "#",
-      githubUrl: "#",
+        "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format", // fallback
+      tech: ["Vite", "React", "Tailwind", "Vercel"],
+      liveUrl: "https://vibras-path-forge-git-main-enriquebarrosos-projects.vercel.app/",
+      githubUrl: "#"
     },
     {
       title: "AI Chat Assistant",
@@ -66,6 +67,12 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
   ];
+
+  const screenshotSrc = useCallback((liveUrl?: string) => {
+    if (!liveUrl || liveUrl === "#") return null;
+    // Puedes añadir params si luego quieres soportar tamaños variables
+    return `/api/screenshot?url=${encodeURIComponent(liveUrl)}`;
+  }, []);
 
   return (
     <section id="projects" className="py-20">
@@ -83,73 +90,86 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={project.title}
-              className="overflow-hidden bg-gradient-card shadow-card hover:shadow-card-hover transition-smooth group animate-fade-in"
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              {/* Media */}
-              <div className="relative overflow-hidden">
-                <div className="w-full aspect-[16/9] bg-secondary/40">
-                  <img
-                    src={project.image}
-                    alt={`Vista del proyecto ${project.title}`}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
-              </div>
+          {projects.map((project, index) => {
+            const screenshot = screenshotSrc(project.liveUrl);
+            const fallback = project.image;
 
-              {/* Body */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+            return (
+              <Card
+                key={project.title}
+                className="overflow-hidden bg-gradient-card shadow-card hover:shadow-card-hover transition-smooth group animate-fade-in"
+                style={{ animationDelay: `${index * 0.08}s` }}
+              >
+                {/* Media */}
+                <div className="relative overflow-hidden">
+                  <div className="w-full aspect-[16/9] bg-secondary/40">
+                    <img
+                      src={screenshot || fallback}
+                      alt={`Vista del proyecto ${project.title}`}
+                      loading="lazy"
+                      decoding="async"
+                      // Si falla la captura real, usa la imagen de fallback
+                      onError={(e) => {
+                        if (fallback && e.currentTarget.src !== fallback) {
+                          e.currentTarget.src = fallback;
+                        }
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
+                      // (Opcional) ayuda responsive en navegadores que lo usen
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
                 </div>
 
-                <div className="flex gap-3">
-                  {project.liveUrl && project.liveUrl !== "#" && (
-                    <Button variant="outline" size="sm" className="flex-1" asChild>
-                      <a
-                        href={project.liveUrl}
-                        target={project.liveUrl.startsWith("/") ? "_self" : "_blank"}
-                        rel="noreferrer"
-                        aria-label={`Abrir proyecto en vivo: ${project.title}`}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Ver proyecto
-                      </a>
-                    </Button>
-                  )}
+                {/* Body */}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
 
-                  {project.githubUrl && project.githubUrl !== "#" && (
-                    <Button variant="outline" size="sm" className="flex-1" asChild>
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Abrir repositorio: ${project.title}`}
-                      >
-                        <Github className="w-4 h-4 mr-2" />
-                        Código
-                      </a>
-                    </Button>
-                  )}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tech.map((tech) => (
+                      <Badge key={tech} variant="outline" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-3">
+                    {project.liveUrl && project.liveUrl !== "#" && (
+                      <Button variant="outline" size="sm" className="flex-1" asChild>
+                        <a
+                          href={project.liveUrl}
+                          target={project.liveUrl.startsWith("/") ? "_self" : "_blank"}
+                          rel="noreferrer"
+                          aria-label={`Abrir proyecto en vivo: ${project.title}`}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Ver proyecto
+                        </a>
+                      </Button>
+                    )}
+
+                    {project.githubUrl && project.githubUrl !== "#" && (
+                      <Button variant="outline" size="sm" className="flex-1" asChild>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Abrir repositorio: ${project.title}`}
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          Código
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </div>
-
-              </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">
