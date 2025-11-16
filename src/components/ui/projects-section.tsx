@@ -43,7 +43,8 @@ const ProjectsSection = () => {
       image:
         "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=1200&h=675&fit=crop&auto=format",
       tech: ["DALL·E", "Claude/Gemini", "Moderation", "Workflows"],
-      liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
+      liveUrl:
+        "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
       githubUrl: "#",
     },
     {
@@ -51,10 +52,11 @@ const ProjectsSection = () => {
       description:
         "Landing con estética fitness/tech, optimizada para conversión, SEO y despliegue en Vercel.",
       image:
-        "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format", // fallback
+        "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format",
       tech: ["Vite", "React", "Tailwind", "Vercel"],
-      liveUrl: "https://vibras-path-forge-git-main-enriquebarrosos-projects.vercel.app/",
-      githubUrl: "#"
+      liveUrl:
+        "https://vibras-path-forge-git-main-enriquebarrosos-projects.vercel.app/",
+      githubUrl: "#",
     },
     {
       title: "AI Chat Assistant",
@@ -70,7 +72,6 @@ const ProjectsSection = () => {
 
   const screenshotSrc = useCallback((liveUrl?: string) => {
     if (!liveUrl || liveUrl === "#") return null;
-    // Puedes añadir params si luego quieres soportar tamaños variables
     return `/api/screenshot?url=${encodeURIComponent(liveUrl)}`;
   }, []);
 
@@ -103,28 +104,72 @@ const ProjectsSection = () => {
                 {/* Media */}
                 <div className="relative overflow-hidden">
                   <div className="w-full aspect-[16/9] bg-secondary/40">
-                    <img
-                      src={screenshot || fallback}
-                      alt={`Vista del proyecto ${project.title}`}
-                      loading="lazy"
-                      decoding="async"
-                      // Si falla la captura real, usa la imagen de fallback
-                      onError={(e) => {
-                        if (fallback && e.currentTarget.src !== fallback) {
-                          e.currentTarget.src = fallback;
+
+                    {/* 🔥 NUEVO BLOQUE RESPONSIVE */}
+                    <picture>
+                      <source
+                        srcSet={
+                          screenshot
+                            ? `${screenshot}&w=480&h=270`
+                            : fallback
                         }
-                      }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
-                      // (Opcional) ayuda responsive en navegadores que lo usen
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    />
+                        media="(max-width: 640px)"
+                        type="image/png"
+                      />
+
+                      <source
+                        srcSet={
+                          screenshot
+                            ? `${screenshot}&w=768&h=432`
+                            : fallback
+                        }
+                        media="(max-width: 1024px)"
+                        type="image/png"
+                      />
+
+                      <source
+                        srcSet={
+                          screenshot
+                            ? `${screenshot}&w=1200&h=675`
+                            : fallback
+                        }
+                        media="(min-width: 1025px)"
+                        type="image/png"
+                      />
+
+                      {/* Fallback final */}
+                      <img
+                        src={
+                          screenshot
+                            ? `${screenshot}&w=960&h=540`
+                            : fallback
+                        }
+                        alt={`Vista del proyecto ${project.title}`}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          if (
+                            fallback &&
+                            e.currentTarget.src !== fallback
+                          ) {
+                            e.currentTarget.src = fallback;
+                          }
+                        }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      />
+                    </picture>
+
                   </div>
+
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
                 </div>
 
                 {/* Body */}
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h3>
                   <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
@@ -139,10 +184,19 @@ const ProjectsSection = () => {
 
                   <div className="flex gap-3">
                     {project.liveUrl && project.liveUrl !== "#" && (
-                      <Button variant="outline" size="sm" className="flex-1" asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                        asChild
+                      >
                         <a
                           href={project.liveUrl}
-                          target={project.liveUrl.startsWith("/") ? "_self" : "_blank"}
+                          target={
+                            project.liveUrl.startsWith("/")
+                              ? "_self"
+                              : "_blank"
+                          }
                           rel="noreferrer"
                           aria-label={`Abrir proyecto en vivo: ${project.title}`}
                         >
@@ -152,19 +206,25 @@ const ProjectsSection = () => {
                       </Button>
                     )}
 
-                    {project.githubUrl && project.githubUrl !== "#" && (
-                      <Button variant="outline" size="sm" className="flex-1" asChild>
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={`Abrir repositorio: ${project.title}`}
+                    {project.githubUrl &&
+                      project.githubUrl !== "#" && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          asChild
                         >
-                          <Github className="w-4 h-4 mr-2" />
-                          Código
-                        </a>
-                      </Button>
-                    )}
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Abrir repositorio: ${project.title}`}
+                          >
+                            <Github className="w-4 h-4 mr-2" />
+                            Código
+                          </a>
+                        </Button>
+                      )}
                   </div>
                 </div>
               </Card>
