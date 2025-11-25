@@ -2,7 +2,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
-import { useCallback } from "react";
 
 const ProjectsSection = () => {
   const projects = [
@@ -68,11 +67,14 @@ const ProjectsSection = () => {
     },
   ];
 
-  const screenshotSrc = useCallback((liveUrl?: string) => {
-    if (!liveUrl || liveUrl === "#") return null;
-    // Puedes añadir params si luego quieres soportar tamaños variables
-    return `/api/screenshot?url=${encodeURIComponent(liveUrl)}`;
-  }, []);
+  const getProjectImage = (project: typeof projects[0]) => {
+    // Si tiene URL real, usar captura de pantalla
+    if (project.liveUrl && project.liveUrl !== "#") {
+      return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}`;
+    }
+    // Fallback a imagen genérica
+    return project.image;
+  };
 
   return (
     <section id="projects" className="py-20">
@@ -90,11 +92,7 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const screenshot = screenshotSrc(project.liveUrl);
-            const fallback = project.image;
-
-            return (
+          {projects.map((project, index) => (
               <Card
                 key={project.title}
                 className="overflow-hidden bg-gradient-card shadow-card hover:shadow-card-hover transition-smooth group animate-fade-in"
@@ -104,18 +102,16 @@ const ProjectsSection = () => {
                 <div className="relative overflow-hidden">
                   <div className="w-full aspect-[16/9] bg-secondary/40">
                     <img
-                      src={screenshot || fallback}
+                      src={getProjectImage(project)}
                       alt={`Vista del proyecto ${project.title}`}
                       loading="lazy"
                       decoding="async"
-                      // Si falla la captura real, usa la imagen de fallback
                       onError={(e) => {
-                        if (fallback && e.currentTarget.src !== fallback) {
-                          e.currentTarget.src = fallback;
+                        if (e.currentTarget.src !== project.image) {
+                          e.currentTarget.src = project.image;
                         }
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
-                      // (Opcional) ayuda responsive en navegadores que lo usen
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     />
                   </div>
@@ -168,8 +164,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
               </Card>
-            );
-          })}
+            ))}
         </div>
 
         <div className="text-center mt-12">
