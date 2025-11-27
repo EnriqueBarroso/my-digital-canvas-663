@@ -27,16 +27,13 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      // 👇 PROYECTO ACTUALIZADO: GenAI Assets Studio
-      title: "GenAI Assets Studio", 
+      title: "GenAI Assets Studio",
       category: "IA",
-      // 👇 NUEVA DESCRIPCIÓN
       description:
-        "Transformo ideas en soluciones digitales inteligentes. Desarrollo web a medida y soluciones con IA generativa, desde chatbots personalizados hasta automatización inteligente.",
-      image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop&auto=format", // Foto de IA de stock por si falla la captura
+        "Transformo ideas en soluciones digitales inteligentes. Desarrollo web a medida y soluciones con IA generativa.",
+      // 👇 1. AQUÍ PONEMOS LA RUTA A TU IMAGEN MANUAL (asegúrate de que esté en /public)
+      image: "/devia-preview.png", 
       tech: ["DALL·E", "Claude/Gemini", "Workflows", "Python"],
-      // 👇 Revisa si esta URL es correcta y pública. Si es muy larga, Puppeteer puede tardar.
       liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
       githubUrl: "#",
     },
@@ -90,11 +87,19 @@ const ProjectsSection = () => {
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
+  // 👇 2. MODIFICAMOS ESTA FUNCIÓN
   const getProjectImage = (project: typeof projects[0]) => {
+    // Si la imagen es local (empieza por / y no es API), úsala directamente
+    if (project.image.startsWith("/") && !project.image.startsWith("/api")) {
+        return project.image;
+    }
+
+    // Si no, intenta usar la API de screenshots
     if (project.liveUrl && project.liveUrl !== "#") {
-      // Añadimos timestamp para forzar que refresque la imagen si estaba cacheada rota
       return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}&t=${Date.now()}`;
     }
+    
+    // Fallback final
     return project.image;
   };
 
@@ -145,7 +150,8 @@ const ProjectsSection = () => {
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
-                      if (e.currentTarget.src !== project.image) {
+                      // Si falla la carga, usa la imagen definida en el objeto (fallback)
+                      if (e.currentTarget.src !== window.location.origin + project.image) {
                         e.currentTarget.src = project.image;
                       }
                   }}
