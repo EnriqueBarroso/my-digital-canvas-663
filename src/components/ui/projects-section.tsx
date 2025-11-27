@@ -47,14 +47,13 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      title: "Vibras Path Forge",
+      title: "Vibras Fitness AI",
       description:
         "Landing con estética fitness/tech, optimizada para conversión, SEO y despliegue en Vercel.",
       image:
         "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format",
       tech: ["Vite", "React", "Tailwind", "Vercel"],
-      liveUrl:
-        "https://vibras-path-forge-git-main-enriquebarrosos-projects.vercel.app/",
+      liveUrl: "https://vibras-path-forge.vercel.app/",
       githubUrl: "#",
     },
     {
