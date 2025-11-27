@@ -7,6 +7,7 @@ import { ThemeProvider } from "./components/ui/theme-provider";
 import Layout from "./components/ui/Layout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { ScrollToTop } from "./components/scroll-to-top";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,8 @@ const App = () => (
             </Route>
             {/* Si quisieras una ruta SIN navbar (ej: login), la pondrías aquí fuera */}
           </Routes>
+          
+          <ScrollToTop />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import profileImage from "@/assets/profile-image.png";
+// 👇 1. Importamos nuestro nuevo componente
+import { Typewriter } from "@/components/ui/typewriter"; 
 
 const HeroSection = () => {
   const scrollToAbout = () => {
@@ -36,9 +38,20 @@ const HeroSection = () => {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-2">
-            Desarrollador Full Stack
-          </p>
+          {/* 👇 2. AQUÍ ESTÁ LA MAGIA: Reemplazamos el párrafo estático */}
+          <div className="text-xl md:text-2xl text-muted-foreground font-medium mb-6 h-8 flex items-center justify-center gap-2">
+             <span>Soy</span>
+             <Typewriter 
+               titles={[
+                 "Desarrollador Full Stack",
+                 "Experto en Automatización",
+                 "Entusiasta de la IA",
+                 "Creador de Soluciones"
+               ]}
+               speed={100}
+               pause={2000}
+             />
+          </div>
           
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Transformo ideas en experiencias digitales con código, creatividad y un toque de IA.
