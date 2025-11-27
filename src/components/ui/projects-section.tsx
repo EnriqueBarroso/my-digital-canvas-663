@@ -16,21 +16,10 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-commerce Platform",
-      category: "Web",
-      description:
-        "Plataforma de comercio electrónico con panel admin, gestión de inventario y pasarela de pagos integrada.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
       title: "Web Compañía Teatral",
       category: "Web",
       description:
-        "Sitio oficial con cartelera dinámica y gestión de actores. Diseño inmersivo pensado para el mundo escénico.",
+        "Sitio oficial para la compañía teatral Hubert de Blanck, con cartelera dinámica y diseño inmersivo.",
       image:
         "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=1200&h=675&fit=crop&auto=format",
       tech: ["Next.js", "Tailwind CSS", "Express", "MySQL"],
@@ -38,8 +27,22 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      title: "ImageAI Studio", // 👈 Actualizado el nombre
-      category: "IA",          // 👈 CAMBIADO DE "Web" A "IA"
+      // 👇 PROYECTO ACTUALIZADO: GenAI Assets Studio
+      title: "GenAI Assets Studio", 
+      category: "IA",
+      // 👇 NUEVA DESCRIPCIÓN
+      description:
+        "Transformo ideas en soluciones digitales inteligentes. Desarrollo web a medida y soluciones con IA generativa, desde chatbots personalizados hasta automatización inteligente.",
+      image:
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop&auto=format", // Foto de IA de stock por si falla la captura
+      tech: ["DALL·E", "Claude/Gemini", "Workflows", "Python"],
+      // 👇 Revisa si esta URL es correcta y pública. Si es muy larga, Puppeteer puede tardar.
+      liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
+      githubUrl: "#",
+    },
+    {
+      title: "ImageAI Studio",
+      category: "IA",
       description:
         "Landing page moderna optimizada para conversión y SEO, con analíticas integradas.",
       image:
@@ -49,21 +52,10 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      title: "GenAI Assets Studio",
-      category: "IA",
-      description:
-        "Generación de imágenes/textos para campañas desde prompts, con pipeline y revisión automática.",
-      image:
-        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=1200&h=675&fit=crop&auto=format",
-      tech: ["DALL·E", "Claude/Gemini", "Python", "Workflows"],
-      liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
-      githubUrl: "#",
-    },
-    {
       title: "Vibras Fitness AI",
       category: "Web",
       description:
-        "Landing con estética fitness/tech, optimizada para conversión y despliegue rápido.",
+        "Landing page con estética fitness/tech, optimizada para conversión y despliegue rápido.",
       image:
         "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=675&fit=crop&auto=format",
       tech: ["Vite", "React", "Tailwind", "Vercel"],
@@ -74,24 +66,34 @@ const ProjectsSection = () => {
       title: "AI Chat Assistant",
       category: "IA",
       description:
-        "Asistente conversacional con NLP e integración con APIs externas para atención al cliente.",
+        "Asistente conversacional con NLP e integración con APIs externas.",
       image:
-        "https://lead-llama-bot.vercel.app/screenshot.png", 
+        "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&h=675&fit=crop&auto=format",
       tech: ["React", "FastAPI", "OpenAI API", "LangChain"],
       liveUrl: "https://lead-llama-bot.vercel.app/",
       githubUrl: "#",
     },
+    {
+      title: "E-commerce Platform",
+      category: "Web",
+      description:
+        "Plataforma de comercio electrónico con panel admin y gestión de inventario.",
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
+      tech: ["React", "Node.js", "Stripe"],
+      liveUrl: "#", 
+      githubUrl: "#",
+    },
   ];
 
-  // Lógica de filtrado
   const filteredProjects = activeCategory === "Todos" 
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
-  // Helper para imágenes
   const getProjectImage = (project: typeof projects[0]) => {
     if (project.liveUrl && project.liveUrl !== "#") {
-      return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}`;
+      // Añadimos timestamp para forzar que refresque la imagen si estaba cacheada rota
+      return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}&t=${Date.now()}`;
     }
     return project.image;
   };
@@ -109,7 +111,6 @@ const ProjectsSection = () => {
             Una selección de mis trabajos en desarrollo web e inteligencia artificial.
           </p>
 
-          {/* BOTONES DE FILTRO */}
           <div className="flex flex-wrap justify-center gap-3 animate-fade-in">
             {categories.map((cat) => (
               <Button
@@ -130,7 +131,6 @@ const ProjectsSection = () => {
           </div>
         </div>
 
-        {/* GRID DE PROYECTOS */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
           {filteredProjects.map((project, index) => (
             <Card
@@ -138,7 +138,6 @@ const ProjectsSection = () => {
               className="overflow-hidden bg-gradient-card dark:bg-card dark:bg-none shadow-card hover:shadow-card-hover transition-all duration-500 group animate-fade-in border-border/50 flex flex-col"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Imagen */}
               <div className="relative overflow-hidden aspect-video bg-muted group">
                 <img
                   src={getProjectImage(project)}
@@ -155,7 +154,7 @@ const ProjectsSection = () => {
                    {project.liveUrl && project.liveUrl !== "#" && (
                      <Button size="sm" variant="secondary" asChild className="rounded-full">
                        <a href={project.liveUrl} target="_blank" rel="noreferrer">
-                         <ExternalLink className="w-4 h-4 mr-2" /> Demo
+                         <ExternalLink className="w-4 h-4 mr-2" /> Visitar
                        </a>
                      </Button>
                    )}
@@ -169,7 +168,6 @@ const ProjectsSection = () => {
                 </div>
               </div>
 
-              {/* Contenido */}
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl font-bold text-foreground line-clamp-1">
@@ -194,30 +192,6 @@ const ProjectsSection = () => {
               </div>
             </Card>
           ))}
-        </div>
-
-        {/* Mensaje si no hay proyectos */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20 text-muted-foreground animate-fade-in">
-            <p>No se encontraron proyectos en esta categoría.</p>
-          </div>
-        )}
-
-        <div className="text-center mt-12">
-          <Button
-            variant="outline"
-            className="hover:bg-primary hover:text-primary-foreground transition-smooth group"
-            asChild
-          >
-            <a
-              href="https://github.com/EnriqueBarroso?tab=repositories"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Ver más en GitHub
-              <Github className="ml-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
-            </a>
-          </Button>
         </div>
       </div>
     </section>
