@@ -68,22 +68,6 @@ const ProjectsSection = () => {
     },
   ];
 
-<<<<<<< HEAD
-  const getProjectImage = (project: typeof projects[0]) => {
-    // Si tiene URL real, usar captura de pantalla
-    if (project.liveUrl && project.liveUrl !== "#") {
-      return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}`;
-    }
-    // Fallback a imagen genérica
-    return project.image;
-  };
-=======
-  const screenshotSrc = useCallback((liveUrl?: string) => {
-    if (!liveUrl || liveUrl === "#") return null;
-    return `/api/screenshot?url=${encodeURIComponent(liveUrl)}`;
-  }, []);
->>>>>>> 445db77 (Actualización: mejoras del portafolio y función responsive screenshot)
-
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-6">
@@ -100,7 +84,16 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            // 1. Definimos las variables AQUÍ dentro del map para usarlas en el JSX
+            const fallback = project.image;
+            const hasLiveUrl = project.liveUrl && project.liveUrl !== "#";
+            // Si tiene URL en vivo, preparamos la base para la screenshot API, si no, es null
+            const screenshotBase = hasLiveUrl
+              ? `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}`
+              : null;
+
+            return (
               <Card
                 key={project.title}
                 className="overflow-hidden bg-gradient-card shadow-card hover:shadow-card-hover transition-smooth group animate-fade-in"
@@ -109,28 +102,13 @@ const ProjectsSection = () => {
                 {/* Media */}
                 <div className="relative overflow-hidden">
                   <div className="w-full aspect-[16/9] bg-secondary/40">
-<<<<<<< HEAD
-                    <img
-                      src={getProjectImage(project)}
-                      alt={`Vista del proyecto ${project.title}`}
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        if (e.currentTarget.src !== project.image) {
-                          e.currentTarget.src = project.image;
-                        }
-                      }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    />
-=======
-
-                    {/* 🔥 NUEVO BLOQUE RESPONSIVE */}
+                    
+                    {/* 🔥 BLOQUE CORREGIDO: Usamos las variables definidas arriba */}
                     <picture>
                       <source
                         srcSet={
-                          screenshot
-                            ? `${screenshot}&w=480&h=270`
+                          screenshotBase
+                            ? `${screenshotBase}&w=480&h=270`
                             : fallback
                         }
                         media="(max-width: 640px)"
@@ -139,8 +117,8 @@ const ProjectsSection = () => {
 
                       <source
                         srcSet={
-                          screenshot
-                            ? `${screenshot}&w=768&h=432`
+                          screenshotBase
+                            ? `${screenshotBase}&w=768&h=432`
                             : fallback
                         }
                         media="(max-width: 1024px)"
@@ -149,25 +127,26 @@ const ProjectsSection = () => {
 
                       <source
                         srcSet={
-                          screenshot
-                            ? `${screenshot}&w=1200&h=675`
+                          screenshotBase
+                            ? `${screenshotBase}&w=1200&h=675`
                             : fallback
                         }
                         media="(min-width: 1025px)"
                         type="image/png"
                       />
 
-                      {/* Fallback final */}
+                      {/* Fallback final (Img tag) */}
                       <img
                         src={
-                          screenshot
-                            ? `${screenshot}&w=960&h=540`
+                          screenshotBase
+                            ? `${screenshotBase}&w=960&h=540`
                             : fallback
                         }
                         alt={`Vista del proyecto ${project.title}`}
                         loading="lazy"
                         decoding="async"
                         onError={(e) => {
+                          // Si falla la API de screenshot, ponemos la imagen fallback
                           if (
                             fallback &&
                             e.currentTarget.src !== fallback
@@ -179,8 +158,6 @@ const ProjectsSection = () => {
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       />
                     </picture>
-
->>>>>>> 445db77 (Actualización: mejoras del portafolio y función responsive screenshot)
                   </div>
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
@@ -204,7 +181,7 @@ const ProjectsSection = () => {
                   </div>
 
                   <div className="flex gap-3">
-                    {project.liveUrl && project.liveUrl !== "#" && (
+                    {hasLiveUrl && (
                       <Button
                         variant="outline"
                         size="sm"
@@ -227,29 +204,29 @@ const ProjectsSection = () => {
                       </Button>
                     )}
 
-                    {project.githubUrl &&
-                      project.githubUrl !== "#" && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex-1"
-                          asChild
+                    {project.githubUrl && project.githubUrl !== "#" && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                        asChild
+                      >
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Abrir repositorio: ${project.title}`}
                         >
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`Abrir repositorio: ${project.title}`}
-                          >
-                            <Github className="w-4 h-4 mr-2" />
-                            Código
-                          </a>
-                        </Button>
-                      )}
+                          <Github className="w-4 h-4 mr-2" />
+                          Código
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </Card>
-            ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">
