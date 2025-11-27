@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       description:
         "Transformo ideas en soluciones digitales inteligentes. Desarrollo web a medida y soluciones con IA generativa.",
       // 👇 1. AQUÍ PONEMOS LA RUTA A TU IMAGEN MANUAL (asegúrate de que esté en /public)
-      image: "/public/devia-preview.png.png", 
+      image: "/devia-preview.png.png", 
       tech: ["DALL·E", "Claude/Gemini", "Workflows", "Python"],
       liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
       githubUrl: "#",
