@@ -17,7 +17,7 @@ const ProjectsSection = () => {
   const projects = [
     {
       title: "E-commerce Platform",
-      category: "Web", // 👈 Nueva propiedad para filtrar
+      category: "Web",
       description:
         "Plataforma de comercio electrónico con panel admin, gestión de inventario y pasarela de pagos integrada.",
       image:
@@ -38,8 +38,8 @@ const ProjectsSection = () => {
       githubUrl: "#",
     },
     {
-      title: "Landing Page Startup",
-      category: "Web",
+      title: "ImageAI Studio", // 👈 Actualizado el nombre
+      category: "IA",          // 👈 CAMBIADO DE "Web" A "IA"
       description:
         "Landing page moderna optimizada para conversión y SEO, con analíticas integradas.",
       image:
@@ -50,7 +50,7 @@ const ProjectsSection = () => {
     },
     {
       title: "GenAI Assets Studio",
-      category: "IA", // 👈 Proyecto de IA
+      category: "IA",
       description:
         "Generación de imágenes/textos para campañas desde prompts, con pipeline y revisión automática.",
       image:
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
       description:
         "Asistente conversacional con NLP e integración con APIs externas para atención al cliente.",
       image:
-        "https://lead-llama-bot.vercel.app/screenshot.png", // Ajusta si la imagen falla
+        "https://lead-llama-bot.vercel.app/screenshot.png", 
       tech: ["React", "FastAPI", "OpenAI API", "LangChain"],
       liveUrl: "https://lead-llama-bot.vercel.app/",
       githubUrl: "#",
@@ -88,7 +88,7 @@ const ProjectsSection = () => {
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
-  // Helper para imágenes (el mismo que tenías, simplificado)
+  // Helper para imágenes
   const getProjectImage = (project: typeof projects[0]) => {
     if (project.liveUrl && project.liveUrl !== "#") {
       return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}`;
@@ -109,7 +109,7 @@ const ProjectsSection = () => {
             Una selección de mis trabajos en desarrollo web e inteligencia artificial.
           </p>
 
-          {/* 👇 BOTONES DE FILTRO */}
+          {/* BOTONES DE FILTRO */}
           <div className="flex flex-wrap justify-center gap-3 animate-fade-in">
             {categories.map((cat) => (
               <Button
@@ -136,20 +136,19 @@ const ProjectsSection = () => {
             <Card
               key={project.title}
               className="overflow-hidden bg-gradient-card dark:bg-card dark:bg-none shadow-card hover:shadow-card-hover transition-all duration-500 group animate-fade-in border-border/50 flex flex-col"
-              style={{ animationDelay: `${index * 0.1}s` }} // Efecto cascada
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Imagen */}
-              <div className="relative overflow-hidden aspect-video bg-muted">
+              <div className="relative overflow-hidden aspect-video bg-muted group">
                 <img
                   src={getProjectImage(project)}
                   alt={`Proyecto ${project.title}`}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
-                     // Fallback si falla la screenshot
-                     if (e.currentTarget.src !== project.image) {
+                      if (e.currentTarget.src !== project.image) {
                         e.currentTarget.src = project.image;
-                     }
+                      }
                   }}
                 />
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
@@ -197,7 +196,7 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Mensaje si no hay proyectos (por si filtras y no hay nada) */}
+        {/* Mensaje si no hay proyectos */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-20 text-muted-foreground animate-fade-in">
             <p>No se encontraron proyectos en esta categoría.</p>
