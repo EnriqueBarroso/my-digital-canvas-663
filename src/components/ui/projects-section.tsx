@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       image:
         "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format",
       tech: ["Vite", "React", "Tailwind", "Vercel"],
-      liveUrl: "#",
+      liveUrl: "https://imageai-studio.netlify.app/",
       githubUrl: "#",
     },
     {
