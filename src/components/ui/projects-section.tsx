@@ -23,7 +23,7 @@ const ProjectsSection = () => {
       image:
         "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=1200&h=675&fit=crop&auto=format",
       tech: ["Next.js", "Tailwind CSS", "Express", "MySQL"],
-      liveUrl: "https://hubert-stage-arts.vercel.app/",
+      liveUrl: "https://hubertdeblanck.netlify.app/",
       githubUrl: "#",
     },
     {
@@ -64,7 +64,7 @@ const ProjectsSection = () => {
       image:
         "https://lead-llama-bot.vercel.app/",
       tech: ["React", "FastAPI", "OpenAI API", "LangChain"],
-      liveUrl: "#",
+      liveUrl: "https://lead-llama-bot.vercel.app/",
       githubUrl: "#",
     },
   ];
