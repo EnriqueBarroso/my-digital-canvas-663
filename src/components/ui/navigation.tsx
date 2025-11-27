@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 // 1. 👇 Importamos el botón del tema
-import { ModeToggle } from "@/components/ui/mode-toggle"; 
+import { ModeToggle } from "@/components/ui/mode-toggle";  
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
