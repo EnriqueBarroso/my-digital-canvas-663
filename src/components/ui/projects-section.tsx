@@ -62,7 +62,7 @@ const ProjectsSection = () => {
       description:
         "Asistente conversacional con NLP e integración con APIs externas.",
       image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop&auto=format",
+        "https://lead-llama-bot.vercel.app/",
       tech: ["React", "FastAPI", "OpenAI API", "LangChain"],
       liveUrl: "#",
       githubUrl: "#",
