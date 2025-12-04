@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import profileImage from "@/assets/profile-image.png";
-// 👇 1. Importamos nuestro nuevo componente
 import { Typewriter } from "@/components/ui/typewriter"; 
+import HeroBackground from "@/components/ui/hero-background";
 
 const HeroSection = () => {
   const scrollToAbout = () => {
@@ -14,8 +14,8 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-10"></div>
+      {/* Animated background */}
+      <HeroBackground />
       
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="text-center animate-fade-in">
