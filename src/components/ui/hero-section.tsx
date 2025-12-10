@@ -5,8 +5,8 @@ import { Typewriter } from "@/components/ui/typewriter";
 import HeroBackground from "@/components/ui/hero-background";
 
 const HeroSection = () => {
-  const scrollToAbout = () => {
-    const element = document.getElementById("about");
+  const scrollToProjects = () => {
+    const element = document.getElementById("projects");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -72,7 +72,7 @@ const HeroSection = () => {
 
           {/* CTA Button */}
           <Button 
-            onClick={scrollToAbout}
+            onClick={scrollToProjects}
             className="bg-gradient-primary hover:shadow-hero transition-smooth animate-bounce"
           >
             Ver mi trabajo
