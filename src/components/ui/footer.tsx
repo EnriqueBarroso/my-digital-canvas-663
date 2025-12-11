@@ -7,7 +7,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, href: "https://github.com/EnriqueBarroso", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/enrique-barroso-lain%C3%A9/", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:contacto@enrique-dev.com", label: "Email" }
+    { icon: Mail, href: "mailto:enrique.designer2022@gmail.es", label: "Email" }
   ];
 
   return (
