@@ -5,9 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:tu.email@ejemplo.com", label: "Email" }
+    { icon: Github, href: "https://github.com/EnriqueBarroso", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/enrique-barroso-lain%C3%A9/", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:contacto@enrique-dev.com", label: "Email" }
   ];
 
   return (
