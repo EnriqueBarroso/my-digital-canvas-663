@@ -13,16 +13,18 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme"> {/* <--- Tema por defecto Dark */}
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Rutas con Layout (Navbar/Footer visible) */}
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
               <Route path="*" element={<NotFound />} />
             </Route>
+            {/* Si quisieras una ruta SIN navbar (ej: login), la pondrías aquí fuera */}
           </Routes>
           
           <ScrollToTop />
