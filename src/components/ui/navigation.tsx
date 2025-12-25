@@ -10,8 +10,8 @@ const Navigation = () => {
     { id: "home", label: "Inicio" },
     { id: "about", label: "Sobre mí" },
     { id: "skills", label: "Habilidades" },
-    { id: "projects", label: "Proyectos" },
-    { id: "contact", label: "Contacto" },
+    { id: "proyectos", label: "Proyectos" },
+    { id: "contacto", label: "Contacto" },
   ];
 
   const scrollToSection = (sectionId: string) => {
