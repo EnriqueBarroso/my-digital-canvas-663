@@ -6,7 +6,7 @@ import HeroBackground from "@/components/ui/hero-background";
 
 const HeroSection = () => {
   const scrollToProjects = () => {
-    const element = document.getElementById("projects");
+    const element = document.getElementById("proyectos");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
