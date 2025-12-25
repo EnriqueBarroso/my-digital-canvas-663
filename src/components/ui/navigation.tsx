@@ -120,7 +120,7 @@ const Navigation = () => {
       {/* Menú Móvil Overlay */}
       <div 
         className={cn(
-          "fixed inset-0 top-[73px] bg-background/95 backdrop-blur-lg md:hidden transition-all duration-300 ease-out",
+          "fixed inset-0 top-[73px] bg-background backdrop-blur-none md:hidden transition-all duration-300 ease-out border-t border-border",
           isMenuOpen 
             ? "opacity-100 visible" 
             : "opacity-0 invisible pointer-events-none"
