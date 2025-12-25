@@ -118,40 +118,29 @@ const Navigation = () => {
       </div>
 
       {/* Menú Móvil Overlay */}
-      <div 
-        className={cn(
-          "fixed inset-0 top-[73px] bg-background backdrop-blur-none md:hidden transition-all duration-300 ease-out border-t border-border",
-          isMenuOpen 
-            ? "opacity-100 visible" 
-            : "opacity-0 invisible pointer-events-none"
-        )}
-      >
-        <div className="container mx-auto px-6 py-8">
-          <div className="flex flex-col space-y-2">
-            {navItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={cn(
-                  "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-all duration-300",
-                  "hover:bg-muted/50 hover:pl-6",
-                  activeSection === item.id 
-                    ? "text-primary bg-muted/30" 
-                    : "text-foreground",
-                  isMenuOpen 
-                    ? "translate-x-0 opacity-100" 
-                    : "-translate-x-8 opacity-0"
-                )}
-                style={{ 
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms'
-                }}
-              >
-                {item.label}
-              </button>
-            ))}
+      {isMenuOpen && (
+        <div className="fixed inset-x-0 top-[73px] bottom-0 z-40 md:hidden border-t border-border bg-white dark:bg-[#030712]">
+          <div className="container mx-auto px-6 py-8">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cn(
+                    "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-colors duration-200",
+                    "hover:bg-gray-100 dark:hover:bg-gray-800 hover:pl-6",
+                    activeSection === item.id 
+                      ? "text-primary bg-gray-100 dark:bg-gray-800" 
+                      : "text-gray-900 dark:text-gray-100"
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
