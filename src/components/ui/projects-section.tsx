@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, Code2, Brain, LayoutTemplate } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -7,7 +6,6 @@ import { projects } from "@/data/projects";
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState<"all" | "web" | "ai">("all");
-  const navigate = useNavigate();
 
   const categories = [
     { id: "all" as const, label: "Todos", icon: LayoutTemplate },
@@ -57,15 +55,17 @@ const ProjectsSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
-            <article
+            <a
               key={project.id}
-              onClick={() => navigate(`/proyecto/${project.id}`)}
+              href={project.link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
-                "group relative bg-project-card rounded-xl overflow-hidden cursor-pointer",
+                "group relative bg-project-card rounded-xl overflow-hidden",
                 "border border-project-card-border",
                 "shadow-elegant hover:shadow-elegant-hover",
                 "transition-all duration-500 ease-out",
-                "animate-fade-in"
+                "animate-fade-in block"
               )}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -82,7 +82,7 @@ const ProjectsSection = () => {
                 
                 {/* Hover CTA */}
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  Ver Case Study
+                  Ver Proyecto
                   <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
@@ -117,7 +117,7 @@ const ProjectsSection = () => {
                   ))}
                 </div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>
