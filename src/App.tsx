@@ -7,13 +7,14 @@ import { ThemeProvider } from "./components/ui/theme-provider";
 import Layout from "./components/ui/Layout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ProjectDetail from "./pages/ProjectDetail";
 import { ScrollToTop } from "./components/scroll-to-top";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme"> {/* <--- Tema por defecto Dark */}
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -22,9 +23,9 @@ const App = () => (
             {/* Rutas con Layout (Navbar/Footer visible) */}
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
+              <Route path="/proyecto/:slug" element={<ProjectDetail />} />
               <Route path="*" element={<NotFound />} />
             </Route>
-            {/* Si quisieras una ruta SIN navbar (ej: login), la pondrías aquí fuera */}
           </Routes>
           
           <ScrollToTop />
