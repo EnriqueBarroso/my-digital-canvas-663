@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, ArrowUpRight, Code2, Brain, LayoutTemplate } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { projects } from "@/data/projects";
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -11,63 +12,6 @@ const ProjectsSection = () => {
     { id: "Todos", label: "Todos", icon: LayoutTemplate },
     { id: "Web", label: "Desarrollo Web", icon: Code2 },
     { id: "IA", label: "Inteligencia Artificial", icon: Brain },
-  ];
-
-  const projects = [
-    {
-      title: "Presencia Digital para Artes Escénicas",
-      subtitle: "Hubert de Blanck",
-      category: "Web",
-      achievement: "Digitalización completa de la cartelera teatral con un sistema dinámico.",
-      image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=1200&h=675&fit=crop&auto=format",
-      tech: ["Next.js", "Tailwind CSS", "Express", "MySQL"],
-      liveUrl: "https://hubertdeblanck.netlify.app/",
-    },
-    {
-      title: "DevIA - Ecosistema de Soluciones Inteligentes",
-      subtitle: "AI-Driven Digital",
-      category: "IA",
-      achievement: "Integración de flujos de trabajo con IA Generativa (Claude/Gemini) para automatización de tareas digitales.",
-      image: "/devia-preview.png.png",
-      tech: ["Python", "AI Workflows", "LLMs"],
-      liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
-    },
-    {
-      title: "ImageAI Studio - Optimización de Conversión",
-      subtitle: "Landing de Alto Rendimiento",
-      category: "IA",
-      achievement: "Landing page de alto rendimiento optimizada para SEO y analíticas avanzadas de usuario.",
-      image: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format",
-      tech: ["React", "Vite", "Vercel"],
-      liveUrl: "https://imageai-studio.netlify.app/",
-    },
-    {
-      title: "Vibras Fitness AI - Tech-Driven Health",
-      subtitle: "Fitness Tech Platform",
-      category: "Web",
-      achievement: "Interfaz de usuario de alta fidelidad diseñada para el sector fitness con despliegue ultrarrápido.",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=675&fit=crop&auto=format",
-      tech: ["React", "Tailwind", "Vercel"],
-      liveUrl: "https://vibras-path-forge.vercel.app/",
-    },
-    {
-      title: "AI Chat Assistant - Orquestación de LLMs",
-      subtitle: "Conversational AI",
-      category: "IA",
-      achievement: "Implementación de asistentes conversacionales usando LangChain y FastAPI para procesamiento de lenguaje natural.",
-      image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&h=675&fit=crop&auto=format",
-      tech: ["LangChain", "OpenAI API", "FastAPI"],
-      liveUrl: "https://lead-llama-bot.vercel.app/",
-    },
-    {
-      title: "E-commerce Enterprise & Inventory Logic",
-      subtitle: "Plataforma Comercial",
-      category: "Web",
-      achievement: "Sistema robusto de pagos con Stripe y arquitectura escalable para gestión de stock en tiempo real.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
-      tech: ["Node.js", "Stripe", "React"],
-      liveUrl: "#",
-    },
   ];
 
   const filteredProjects = activeCategory === "Todos"
@@ -85,7 +29,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-projects transition-colors">
+    <section id="proyectos" className="py-24 md:py-32 bg-projects transition-colors">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20 animate-fade-in">
@@ -123,7 +67,7 @@ const ProjectsSection = () => {
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
             <article
-              key={project.title}
+              key={project.slug}
               className={cn(
                 "group relative bg-projects-card rounded-xl overflow-hidden",
                 "border border-projects-border",
@@ -133,6 +77,13 @@ const ProjectsSection = () => {
               )}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              {/* Clickable Card Link */}
+              <Link
+                to={`/proyecto/${project.slug}`}
+                className="absolute inset-0 z-10"
+                aria-label={`Ver case study de ${project.title}`}
+              />
+
               {/* Image Container */}
               <div className="relative aspect-video overflow-hidden bg-black/20">
                 <img
@@ -149,18 +100,11 @@ const ProjectsSection = () => {
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Hover CTA */}
-                {project.liveUrl && project.liveUrl !== "#" && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white text-black text-sm font-medium rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-                  >
-                    Ver Proyecto
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                )}
+                {/* Hover CTA - Ver Case Study */}
+                <div className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white text-black text-sm font-medium rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
+                  Ver Case Study
+                  <ArrowUpRight className="w-4 h-4" />
+                </div>
               </div>
 
               {/* Content */}
@@ -180,16 +124,32 @@ const ProjectsSection = () => {
                   {project.achievement}
                 </p>
 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full"
+                {/* Tech Stack & Live Link */}
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-xs font-medium text-muted-foreground bg-white/5 border border-white/10 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* External Link Button */}
+                  {project.liveUrl && project.liveUrl !== "#" && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="relative z-20 flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-white transition-colors"
+                      onClick={(e) => e.stopPropagation()}
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Live
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
