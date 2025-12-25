@@ -48,6 +48,13 @@ All colors MUST be HSL.
     --shadow-hero: 0 20px 60px -10px hsl(var(--primary) / 0.3);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* High-end portfolio tokens */
+    --projects-bg: 0 0% 4%;
+    --project-card-bg: 0 0% 8%;
+    --project-card-border: 0 0% 15%;
+    --shadow-elegant: 0 1px 2px hsl(0 0% 0% / 0.1), 0 4px 16px hsl(0 0% 0% / 0.1);
+    --shadow-elegant-hover: 0 8px 32px hsl(0 0% 0% / 0.2);
 
     --sidebar-background: 0 0% 98%;
 
@@ -95,8 +102,15 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(145deg, hsl(222 47% 11%) 0%, hsl(217 28% 13%) 100%);
 
     /* Ajustamos también las sombras para que se vean en fondo oscuro */
-    --shadow-card: 0 4px 20px -4px #000000;
-    --shadow-card-hover: 0 8px 30px -4px #000000;
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0%);
+    --shadow-card-hover: 0 8px 30px -4px hsl(0 0% 0%);
+    
+    /* High-end portfolio tokens - dark mode */
+    --projects-bg: 0 0% 4%;
+    --project-card-bg: 0 0% 6%;
+    --project-card-border: 0 0% 12%;
+    --shadow-elegant: 0 1px 2px hsl(0 0% 0% / 0.2), 0 4px 16px hsl(0 0% 0% / 0.3);
+    --shadow-elegant-hover: 0 12px 48px hsl(0 0% 0% / 0.4);
   }
 
   @layer base {

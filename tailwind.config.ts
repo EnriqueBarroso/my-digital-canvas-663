@@ -58,6 +58,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        projects: {
+          DEFAULT: "hsl(var(--projects-bg))",
+          card: "hsl(var(--project-card-bg))",
+          border: "hsl(var(--project-card-border))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -141,6 +146,8 @@ export default {
         "card": "var(--shadow-card)",
         "card-hover": "var(--shadow-card-hover)",
         "hero": "var(--shadow-hero)",
+        "elegant": "var(--shadow-elegant)",
+        "elegant-hover": "var(--shadow-elegant-hover)",
       },
       transitionTimingFunction: {
         "smooth": "var(--transition-smooth)",
