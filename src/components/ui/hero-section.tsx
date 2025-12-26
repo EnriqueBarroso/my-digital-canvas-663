@@ -59,15 +59,21 @@ const HeroSection = () => {
 
           {/* Social Links */}
           <div className="flex justify-center space-x-4 mb-14">
-            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
-              <Github className="h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
-              <Mail className="h-5 w-5" />
-            </Button>
+            <a href="https://github.com/EnriqueBarroso" target="_blank" rel="noreferrer">
+              <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
+                <Github className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="https://www.linkedin.com/in/enrique-barroso-lain%C3%A9/" target="_blank" rel="noreferrer">
+              <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
+                <Linkedin className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="mailto:enrique.designer2022@gmail.es">
+              <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
+                <Mail className="h-5 w-5" />
+              </Button>
+            </a>
           </div>
 
           {/* CTA Button - Elegant opacity transition */}
