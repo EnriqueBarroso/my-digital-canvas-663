@@ -109,18 +109,18 @@ const ProjectsSection = () => {
 
               {/* Content */}
               <div className="p-6 md:p-8">
-                {/* Subtitle */}
-                <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-3">
+                {/* Subtitle (Client) - Small first */}
+                <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground/60 mb-2">
                   {project.subtitle}
                 </p>
                 
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight group-hover:text-primary-foreground transition-colors duration-300">
+                {/* Title (Achievement) - Large and bold */}
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight tracking-tight">
                   {project.title}
                 </h3>
                 
-                {/* Achievement */}
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+                {/* Achievement description */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                   {project.achievement}
                 </p>
 
