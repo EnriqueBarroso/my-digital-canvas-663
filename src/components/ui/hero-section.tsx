@@ -28,17 +28,17 @@ const HeroSection = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-20 animate-pulse"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-10"></div>
           </div>
 
           {/* Name and Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Enrique Barroso
             </span>
           </h1>
           
-          {/* 👇 2. AQUÍ ESTÁ LA MAGIA: Reemplazamos el párrafo estático */}
+          {/* Dynamic subtitle */}
           <div className="text-xl md:text-2xl text-muted-foreground font-medium mb-6 h-8 flex items-center justify-center gap-2">
              <span>Soy</span>
              <Typewriter 
@@ -53,27 +53,27 @@ const HeroSection = () => {
              />
           </div>
           
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
             Transformo ideas en experiencias digitales con código, creatividad y un toque de IA.
           </p>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-4 mb-12">
-            <Button variant="outline" size="icon" className="rounded-full hover:shadow-card-hover transition-smooth">
+          <div className="flex justify-center space-x-4 mb-14">
+            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
               <Github className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full hover:shadow-card-hover transition-smooth">
+            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
               <Linkedin className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full hover:shadow-card-hover transition-smooth">
+            <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
               <Mail className="h-5 w-5" />
             </Button>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button - Elegant opacity transition */}
           <Button 
             onClick={scrollToProjects}
-            className="bg-gradient-primary hover:shadow-hero transition-smooth animate-bounce"
+            className="bg-gradient-primary opacity-90 hover:opacity-100 transition-opacity duration-500"
           >
             Ver mi trabajo
             <ArrowDown className="ml-2 h-4 w-4" />
@@ -81,8 +81,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Scroll indicator - subtle opacity */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-40 hover:opacity-80 transition-opacity duration-500">
         <ArrowDown className="h-6 w-6 text-muted-foreground" />
       </div>
     </section>

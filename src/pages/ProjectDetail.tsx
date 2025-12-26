@@ -112,51 +112,51 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Case Study Content */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="grid gap-16 md:gap-24">
+      {/* Case Study Content - Single Column, Typography Focused */}
+      <section className="py-20 md:py-32">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="grid gap-20 md:gap-32">
             {/* Problem Section */}
             <div className="animate-fade-in">
-              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 01 — El Problema
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
                 Desafío inicial
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
                 {project.problem}
               </p>
             </div>
 
             {/* Solution Section */}
             <div className="animate-fade-in">
-              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 02 — La Solución
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
                 Enfoque técnico
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
                 {project.solution}
               </p>
             </div>
 
-            {/* Results Section */}
+            {/* Results Section - Single Column */}
             <div className="animate-fade-in">
-              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 03 — Resultados
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 tracking-tight">
                 Impacto medible
               </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-4">
                 {project.results.map((result, index) => (
                   <div
                     key={index}
-                    className="p-6 bg-projects-card border border-projects-border rounded-xl"
+                    className="py-6 border-b border-projects-border last:border-0"
                   >
-                    <p className="text-white leading-relaxed">{result}</p>
+                    <p className="text-lg text-white/90 leading-relaxed">{result}</p>
                   </div>
                 ))}
               </div>
