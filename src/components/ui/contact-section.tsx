@@ -208,9 +208,11 @@ const ContactSection = () => {
               <p className="text-muted-foreground text-sm mb-4">
                 Agenda una videollamada de 30 minutos para discutir tu proyecto y ver cómo podemos colaborar.
               </p>
-              <Button variant="outline" className="w-full hover:bg-primary hover:text-white transition-smooth border-primary/20 hover:border-primary">
-                Agendar reunión
-              </Button>
+              <a href="https://calendly.com/enrique-designer2022/30min" target="_blank" rel="noreferrer" className="w-full">
+                <Button variant="outline" className="w-full hover:bg-primary hover:text-white transition-smooth border-primary/20 hover:border-primary">
+                  Agendar reunión
+                </Button>
+              </a>
             </Card>
           </div>
         </div>
