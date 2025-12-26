@@ -264,13 +264,15 @@ const ProjectDetail = () => {
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Me encantaría escuchar sobre tu próximo desafío y cómo puedo ayudarte a hacerlo realidad.
           </p>
-          <Link
-            to="/#contacto"
+          <a
+            href="https://calendly.com/enrique-designer2022/30min"
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
           >
             Hablemos
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
       </section>
     </div>
