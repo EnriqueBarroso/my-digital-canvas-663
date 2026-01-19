@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react"; // 1. Importamos FileText
 import profileImage from "@/assets/profile-image.png";
 import { Typewriter } from "@/components/ui/typewriter"; 
 import HeroBackground from "@/components/ui/hero-background";
 
 const HeroSection = () => {
   const scrollToProjects = () => {
-    const element = document.getElementById("proyectos");
+    // Asegúrate de que tu sección de proyectos tenga id="projects" o id="proyectos"
+    const element = document.getElementById("projects") || document.getElementById("proyectos");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -58,7 +59,7 @@ const HeroSection = () => {
           </p>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-4 mb-14">
+          <div className="flex justify-center space-x-4 mb-10">
             <a href="https://github.com/EnriqueBarroso" target="_blank" rel="noreferrer">
               <Button variant="outline" size="icon" className="rounded-full opacity-80 hover:opacity-100 transition-opacity duration-500">
                 <Github className="h-5 w-5" />
@@ -76,19 +77,37 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* CTA Button - Elegant opacity transition */}
-          <Button 
-            onClick={scrollToProjects}
-            className="bg-gradient-primary opacity-90 hover:opacity-100 transition-opacity duration-500"
-          >
-            Ver mi trabajo
-            <ArrowDown className="ml-2 h-4 w-4" />
-          </Button>
+          {/* 2. CONTENEDOR DE BOTONES (CV Y PROYECTOS) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            
+            {/* Botón Ver Proyectos */}
+            <Button 
+              onClick={scrollToProjects}
+              className="bg-gradient-primary opacity-90 hover:opacity-100 transition-opacity duration-500 w-full sm:w-auto"
+            >
+              Ver mi trabajo
+              <ArrowDown className="ml-2 h-4 w-4" />
+            </Button>
+
+            {/* 3. BOTÓN DESCARGAR CV */}
+            <Button 
+                variant="outline"
+                className="opacity-90 hover:opacity-100 transition-opacity duration-500 w-full sm:w-auto hover:bg-primary/10 border-primary/20"
+                asChild
+            >
+                {/* Asegúrate de que el archivo PDF esté en la carpeta public */}
+                <a href="/cv-enrique-barroso.pdf" download="CV_Enrique_Barroso.pdf">
+                    Descargar CV
+                    <FileText className="ml-2 h-4 w-4" />
+                </a>
+            </Button>
+          </div>
+
         </div>
       </div>
 
       {/* Scroll indicator - subtle opacity */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-40 hover:opacity-80 transition-opacity duration-500">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-40 hover:opacity-80 transition-opacity duration-500 hidden md:block">
         <ArrowDown className="h-6 w-6 text-muted-foreground" />
       </div>
     </section>
