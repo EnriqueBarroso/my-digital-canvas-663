@@ -15,6 +15,28 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  // 👇 NUEVO PROYECTO: CINE CUBANO (Añadido al inicio)
+  {
+    slug: "cine-cubano",
+    title: "Cine Cubano - Patrimonio Digital",
+    subtitle: "Catálogo Interactivo",
+    category: "Web",
+    achievement: "Plataforma digital dedicada a la preservación y difusión del patrimonio cinematográfico cubano con búsqueda avanzada.",
+    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=675&fit=crop&auto=format",
+    tech: ["React", "Vite", "Tailwind CSS", "JSON Data"],
+    liveUrl: "https://cine-cuba.vercel.app/", // 👈 Recuerda poner la URL real si la tienes
+    year: "2024",
+    problem: "El patrimonio cinematográfico cubano cuenta con una rica historia, pero la información sobre filmes, carteles y fichas técnicas se encuentra dispersa o en formatos físicos de difícil acceso. Esto dificulta la labor de investigadores, estudiantes y cinéfilos que buscan consultar esta información de manera ágil y centralizada.",
+    solution: "Desarrollé una plataforma web interactiva (SPA) utilizando React y Vite para garantizar una navegación instantánea. Implementé un sistema de búsqueda avanzada y filtrado en tiempo real manejando una base de datos estructurada en JSON. La interfaz, diseñada con Tailwind CSS, pone el foco en la riqueza visual de los carteles cinematográficos.",
+    results: [
+      "Digitalización de fichas técnicas y carteles históricos",
+      "Búsqueda instantánea sin recargas de página",
+      "Interfaz adaptable a móviles para consulta rápida",
+      "Preservación digital de la identidad visual del cine cubano"
+    ],
+    gallery: []
+  },
+  // 👇 RESTO DE PROYECTOS EXISTENTES
   {
     slug: "hubert-de-blanck",
     title: "Presencia Digital para Artes Escénicas",
@@ -41,7 +63,7 @@ export const projects: Project[] = [
     subtitle: "AI-Driven Digital",
     category: "IA",
     achievement: "Integración de flujos de trabajo con IA Generativa (Claude/Gemini) para automatización de tareas digitales.",
-    image: "/devia-preview.png.png",
+    image: "/devia-preview.png", // Asegúrate de que el nombre coincida con tu archivo en public
     tech: ["Python", "AI Workflows", "LLMs"],
     liveUrl: "https://ai-driven-digital-9wyb-rf8g9a9q0-enriquebarrosos-projects.vercel.app/",
     year: "2024",
