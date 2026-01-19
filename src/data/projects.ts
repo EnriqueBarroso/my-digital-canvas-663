@@ -25,7 +25,7 @@ export const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=675&fit=crop&auto=format",
     tech: ["React", "Vite", "Tailwind CSS", "JSON Data"],
     liveUrl: "https://cine-cuba.vercel.app/", // 👈 Recuerda poner la URL real si la tienes
-    year: "2024",
+    year: "2026",
     problem: "El patrimonio cinematográfico cubano cuenta con una rica historia, pero la información sobre filmes, carteles y fichas técnicas se encuentra dispersa o en formatos físicos de difícil acceso. Esto dificulta la labor de investigadores, estudiantes y cinéfilos que buscan consultar esta información de manera ágil y centralizada.",
     solution: "Desarrollé una plataforma web interactiva (SPA) utilizando React y Vite para garantizar una navegación instantánea. Implementé un sistema de búsqueda avanzada y filtrado en tiempo real manejando una base de datos estructurada en JSON. La interfaz, diseñada con Tailwind CSS, pone el foco en la riqueza visual de los carteles cinematográficos.",
     results: [
