@@ -51,7 +51,7 @@ const ProjectsSection = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4 font-medium">
             Portfolio
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight">
             Proyectos Destacados
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -85,8 +85,8 @@ const ProjectsSection = () => {
               key={project.slug}
               className={cn(
                 "group relative rounded-xl overflow-hidden",
-                "bg-black/40 backdrop-blur-xl",
-                "border border-white/10",
+                "bg-card/80 backdrop-blur-xl",
+                "border border-border hover:border-primary/30",
                 "shadow-elegant hover:shadow-elegant-hover",
                 "transition-all duration-500 ease-out",
                 "animate-fade-in"
@@ -131,7 +131,7 @@ const ProjectsSection = () => {
                 </p>
 
                 {/* Title (Achievement) - Large and bold */}
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight tracking-tight">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight tracking-tight">
                   {project.title}
                 </h3>
 

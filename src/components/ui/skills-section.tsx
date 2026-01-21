@@ -67,13 +67,11 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 md:py-32 bg-black relative overflow-hidden">
-      {/* 1. LUCES DE FONDO (ATMÓSFERA) */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        {/* Luz superior izquierda (Azul/Morada) */}
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Luces de fondo - Solo visibles en dark mode */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none hidden dark:block">
         <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[128px] opacity-50" />
-        {/* Luz inferior derecha (Cyan/Verde) */}
-        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] opacity-50" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-primary/10 rounded-full blur-[128px] opacity-50" />
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
@@ -82,7 +80,7 @@ const SkillsSection = () => {
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4 font-medium">
             Arsenal Tecnológico
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-foreground">
             Mis Habilidades
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -97,8 +95,8 @@ const SkillsSection = () => {
               key={category.title}
             className={`
                 group relative p-8 rounded-2xl 
-                bg-black/40 backdrop-blur-xl border border-white/10 
-                hover:border-white/20 hover:bg-black/50 
+                bg-card/80 backdrop-blur-xl border border-border 
+                hover:border-primary/30 hover:bg-card 
                 transition-all duration-500 ease-out 
                 ${category.glow} 
                 animate-fade-in
@@ -112,7 +110,7 @@ const SkillsSection = () => {
                 >
                   <category.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-tight">{category.title}</h3>
+                <h3 className="text-xl font-bold text-foreground tracking-tight">{category.title}</h3>
               </div>
 
               {/* Descripción */}
@@ -125,8 +123,8 @@ const SkillsSection = () => {
                     key={skill}
                     variant="secondary"
                     className="
-                      bg-white/5 text-zinc-400 border-transparent
-                      group-hover:bg-white/10 group-hover:text-white group-hover:border-white/20
+                      bg-muted text-muted-foreground border-transparent
+                      group-hover:bg-primary/10 group-hover:text-foreground group-hover:border-primary/20
                       transition-all duration-300
                     "
                   >
