@@ -95,10 +95,10 @@ const SkillsSection = () => {
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
-              className={`
+            className={`
                 group relative p-8 rounded-2xl 
-                bg-zinc-900/40 border border-white/5 
-                hover:border-white/10 hover:bg-zinc-900/80 
+                bg-black/40 backdrop-blur-xl border border-white/10 
+                hover:border-white/20 hover:bg-black/50 
                 transition-all duration-500 ease-out 
                 ${category.glow} 
                 animate-fade-in
