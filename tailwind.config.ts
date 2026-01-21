@@ -115,17 +115,17 @@ export default {
           },
         },
         "blob": {
-          "0%": {
+          "0%, 100%": {
             transform: "translate(0px, 0px) scale(1)",
           },
-          "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
+          "25%": {
+            transform: "translate(20px, -30px) scale(1.03)",
           },
-          "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
+          "50%": {
+            transform: "translate(-15px, 15px) scale(0.97)",
           },
-          "100%": {
-            transform: "translate(0px, 0px) scale(1)",
+          "75%": {
+            transform: "translate(10px, 20px) scale(1.02)",
           },
         },
       },
@@ -135,7 +135,7 @@ export default {
         "fade-in": "fade-in 0.6s ease-out",
         "slide-in-left": "slide-in-left 0.6s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "blob": "blob 7s infinite",
+        "blob": "blob 20s ease-in-out infinite",
       },
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",

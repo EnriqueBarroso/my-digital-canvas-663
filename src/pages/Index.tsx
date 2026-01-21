@@ -5,10 +5,12 @@ import SkillsSection from "@/components/ui/skills-section";
 import ProjectsSection from "@/components/ui/projects-section";
 import ContactSection from "@/components/ui/contact-section";
 import Footer from "@/components/ui/footer";
+import AnimatedBackground from "@/components/ui/animated-background";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      <AnimatedBackground />
       <Navigation />
       <HeroSection />
       <AboutSection />
