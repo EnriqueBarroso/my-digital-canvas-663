@@ -35,9 +35,18 @@ const AnimatedBackground = () => {
         />
       </div>
       
-      {/* Light mode subtle background */}
+      {/* Light mode subtle animated background */}
       <div className="block dark:hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+        {/* Subtle light blobs */}
+        <div 
+          className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px]
+                     bg-primary/5 rounded-full blur-[100px] animate-blob"
+        />
+        <div 
+          className="absolute bottom-[-20%] right-[-10%] w-[45vw] h-[45vw] max-w-[500px] max-h-[500px]
+                     bg-accent/5 rounded-full blur-[80px] animate-blob animation-delay-2000"
+        />
       </div>
       
       {/* Subtle noise texture overlay */}
