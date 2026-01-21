@@ -119,7 +119,7 @@ const Navigation = () => {
 
       {/* Menú Móvil Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-x-0 top-[73px] bottom-0 z-40 md:hidden border-t border-border bg-white dark:bg-[#030712]">
+        <div className="fixed inset-x-0 top-[73px] bottom-0 z-40 md:hidden border-t border-border bg-background">
           <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
@@ -128,10 +128,10 @@ const Navigation = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={cn(
                     "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-colors duration-200",
-                    "hover:bg-gray-100 dark:hover:bg-gray-800 hover:pl-6",
+                    "hover:bg-muted hover:pl-6",
                     activeSection === item.id 
-                      ? "text-primary bg-gray-100 dark:bg-gray-800" 
-                      : "text-gray-900 dark:text-gray-100"
+                      ? "text-primary bg-muted" 
+                      : "text-foreground"
                   )}
                 >
                   {item.label}

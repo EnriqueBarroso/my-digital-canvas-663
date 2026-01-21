@@ -50,11 +50,16 @@ All colors MUST be HSL.
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* High-end portfolio tokens */
-    --projects-bg: 0 0% 4%;
-    --project-card-bg: 0 0% 8%;
-    --project-card-border: 0 0% 15%;
-    --shadow-elegant: 0 1px 2px hsl(0 0% 0% / 0.1), 0 4px 16px hsl(0 0% 0% / 0.1);
-    --shadow-elegant-hover: 0 8px 32px hsl(0 0% 0% / 0.2);
+    --projects-bg: 220 25% 95%;
+    --project-card-bg: 0 0% 100%;
+    --project-card-border: 220 20% 90%;
+    --shadow-elegant: 0 1px 3px hsl(220 20% 0% / 0.08), 0 4px 16px hsl(220 20% 0% / 0.06);
+    --shadow-elegant-hover: 0 8px 32px hsl(220 20% 0% / 0.12);
+
+    /* Blob colors for light mode (subtle) */
+    --blob-purple: 263 70% 95%;
+    --blob-indigo: 240 60% 95%;
+    --blob-blue: 200 50% 95%;
 
     --sidebar-background: 0 0% 98%;
 
