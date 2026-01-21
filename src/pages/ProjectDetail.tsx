@@ -4,6 +4,7 @@ import { getProjectBySlug, getNextProject, getPreviousProject } from "@/data/pro
 import { ArrowLeft, ArrowRight, ExternalLink, Calendar, Tag, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import AnimatedBackground from "@/components/ui/animated-background";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,7 +19,8 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-projects flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
+        <AnimatedBackground />
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Proyecto no encontrado</h1>
           <Link to="/#proyectos" className="text-primary hover:underline">
@@ -40,7 +42,8 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-projects">
+    <div className="min-h-screen">
+      <AnimatedBackground />
       {/* Back Navigation */}
       <div className="fixed top-24 left-6 z-50">
         <Link
