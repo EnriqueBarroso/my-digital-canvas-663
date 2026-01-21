@@ -44,7 +44,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="proyectos" className="py-24 md:py-32 bg-projects transition-colors">
+    <section id="proyectos" className="py-24 md:py-32 transition-colors">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20 animate-fade-in">
