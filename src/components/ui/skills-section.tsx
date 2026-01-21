@@ -1,10 +1,14 @@
 import { Badge } from "@/components/ui/badge";
+import { Brain, Layout, Server, Database, Terminal, Code2 } from "lucide-react";
 
 const SkillsSection = () => {
   const skillCategories = [
     {
       title: "IA y Automatización",
-      description: "Asistentes inteligentes, automatizaciones y generación de contenido",
+      description: "Asistentes inteligentes, RAG y flujos de trabajo autónomos.",
+      icon: Brain,
+      color: "text-purple-400", // Color del icono
+      glow: "group-hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)]", // Brillo morado
       skills: [
         "ChatGPT",
         "Gemini",
@@ -20,7 +24,10 @@ const SkillsSection = () => {
     },
     {
       title: "Full Stack",
-      description: "Desarrollo web completo, desde la interfaz hasta el servidor",
+      description: "Arquitectura completa y escalable de extremo a extremo.",
+      icon: Code2,
+      color: "text-blue-400",
+      glow: "group-hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
       skills: [
         "React",
         "TypeScript",
@@ -34,93 +41,97 @@ const SkillsSection = () => {
       ],
     },
     {
-      title: "Frontend",
-      description: "Interfaces modernas y experiencias de usuario fluidas",
-      skills: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Angular",
-        "Vue.js",
-        "Tailwind CSS",
-        "HTML5",
-        "CSS3",
-      ],
+      title: "Frontend Moderno",
+      description: "Experiencias visuales fluidas, reactivas y accesibles.",
+      icon: Layout,
+      color: "text-cyan-400",
+      glow: "group-hover:shadow-[0_0_30px_-5px_rgba(34,211,238,0.3)]",
+      skills: ["React", "TypeScript", "Next.js", "Angular", "Vue.js", "Framer Motion", "Shadcn/ui", "HTML5/CSS3"],
     },
     {
       title: "Backend",
-      description: "APIs robustas y arquitecturas escalables",
-      skills: [
-        "Node.js",
-        "Express",
-        "PHP",
-        "Laravel",
-        "Python",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-      ],
+      description: "Lógica de negocio robusta y alto rendimiento.",
+      icon: Server,
+      color: "text-green-400",
+      glow: "group-hover:shadow-[0_0_30px_-5px_rgba(74,222,128,0.3)]",
+      skills: ["Node.js", "Express", "Python", "FastAPI", "PHP/Laravel", "Redis", "Supabase"],
     },
     {
-      title: "DevOps & Tools",
-      description: "Infraestructura, despliegue y herramientas de desarrollo",
-      skills: [
-        "Git",
-        "Docker",
-        "AWS",
-        "Vercel",
-        "Figma",
-        "Jest",
-        "Cypress",
-        "CI/CD",
-      ],
+      title: "Data & Tools",
+      description: "Gestión de datos y herramientas de desarrollo.",
+      icon: Database,
+      color: "text-yellow-400",
+      glow: "group-hover:shadow-[0_0_30px_-5px_rgba(250,204,21,0.3)]",
+      skills: ["PostgreSQL", "MongoDB", "Git", "Docker", "AWS", "Vercel", "Jest", "CI/CD"],
     },
   ];
 
   return (
-    <section id="skills" className="py-24 md:py-32">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section id="skills" className="py-24 md:py-32 bg-black relative overflow-hidden">
+      {/* 1. LUCES DE FONDO (ATMÓSFERA) */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        {/* Luz superior izquierda (Azul/Morada) */}
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[128px] opacity-50" />
+        {/* Luz inferior derecha (Cyan/Verde) */}
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] opacity-50" />
+      </div>
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Header */}
         <div className="text-center mb-20 animate-fade-in">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
-            Expertise
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4 font-medium">
+            Arsenal Tecnológico
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight">
-            Habilidades
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight text-white">
+            Mis Habilidades
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Tecnologías y herramientas que domino para crear soluciones efectivas
+            Stack tecnológico enfocado en rendimiento, escalabilidad y experiencia de usuario.
           </p>
         </div>
 
-        {/* Skills Grid - Ultra Clean Cards */}
-        <div className="grid md:grid-cols-2 gap-4">
+        {/* Grid de Tarjetas */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
-              className="group p-8 md:p-10 rounded-2xl bg-transparent hover:bg-muted/50 dark:hover:bg-white/[0.03] transition-colors duration-500 animate-fade-in"
+              className={`
+                group relative p-8 rounded-2xl 
+                bg-zinc-900/40 border border-white/5 
+                hover:border-white/10 hover:bg-zinc-900/80 
+                transition-all duration-500 ease-out 
+                ${category.glow} 
+                animate-fade-in
+              `}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-2">
-                {category.title}
-              </h3>
-              
-              {/* Description */}
-              <p className="text-sm text-muted-foreground/70 mb-6 leading-relaxed">
-                {category.description}
-              </p>
+              {/* Icono y Título */}
+              <div className="flex items-center gap-4 mb-4">
+                <div
+                  className={`p-3 rounded-xl bg-white/5 ${category.color} group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <category.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white tracking-tight">{category.title}</h3>
+              </div>
 
-              {/* Skills as minimal text badges */}
+              {/* Descripción */}
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed h-10">{category.description}</p>
+
+              {/* Skills (Badges) */}
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <span
+                  <Badge
                     key={skill}
-                    className="text-sm text-muted-foreground/80 group-hover:text-foreground/70 transition-colors duration-300"
+                    variant="secondary"
+                    className="
+                      bg-white/5 text-zinc-400 border-transparent
+                      group-hover:bg-white/10 group-hover:text-white group-hover:border-white/20
+                      transition-all duration-300
+                    "
                   >
                     {skill}
-                    <span className="text-muted-foreground/30 ml-2 last:hidden">·</span>
-                  </span>
+                  </Badge>
                 ))}
               </div>
             </div>
