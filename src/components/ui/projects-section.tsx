@@ -84,8 +84,9 @@ const ProjectsSection = () => {
             <article
               key={project.slug}
               className={cn(
-                "group relative bg-projects-card rounded-xl overflow-hidden",
-                "border border-projects-border",
+                "group relative rounded-xl overflow-hidden",
+                "bg-black/40 backdrop-blur-xl",
+                "border border-white/10",
                 "shadow-elegant hover:shadow-elegant-hover",
                 "transition-all duration-500 ease-out",
                 "animate-fade-in"
