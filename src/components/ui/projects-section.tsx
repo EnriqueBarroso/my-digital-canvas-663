@@ -18,30 +18,7 @@ const ProjectsSection = () => {
     ? projects
     : projects.filter(project => project.category === activeCategory);
 
-  const VERCEL_API_DOMAIN = "https://enrique-barroso-dev.vercel.app";
-
-  const getProjectImage = (project: typeof projects[0]) => {
-    // A. Si es imagen manual local (ej: /imagen.png), úsala tal cual
-    if (project.image.startsWith("/") && !project.image.startsWith("/api")) {
-      return project.image;
-    }
-
-    // B. Si es una imagen externa de stock (Unsplash, etc), úsala
-    if (project.image.startsWith("http")) {
-      // Si quieres forzar captura aunque haya foto de stock, borra este if.
-      // De momento lo dejamos para que cargue rápido si no es necesario screenshot.
-    }
-
-    // C. Lógica Maestra: Si tiene URL en vivo, pedimos la captura a TU VERCEL PRINCIPAL
-    if (project.liveUrl && project.liveUrl !== "#") {
-      // Usamos la URL absoluta de Vercel siempre.
-      // Esto hace que funcione en Netlify y en Localhost.
-      return `${VERCEL_API_DOMAIN}/api/screenshot?url=${encodeURIComponent(project.liveUrl)}&t=${project.slug}`;
-    }
-
-    // Fallback final
-    return project.image;
-  };
+  const getProjectImage = (project: typeof projects[0]) => project.image;
 
   return (
     <section id="proyectos" className="py-24 md:py-32 transition-colors">
@@ -108,9 +85,8 @@ const ProjectsSection = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   onError={(e) => {
-                    if (e.currentTarget.src !== window.location.origin + project.image) {
-                      e.currentTarget.src = project.image;
-                    }
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/placeholder.svg";
                   }}
                 />
                 {/* Gradient Overlay */}

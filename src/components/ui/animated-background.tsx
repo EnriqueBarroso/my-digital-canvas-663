@@ -4,34 +4,27 @@ const AnimatedBackground = () => {
       {/* Base subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background" />
       
-      {/* Animated mesh gradient blobs - only visible in dark mode */}
-      <div className="hidden dark:block">
+      {/* Animated mesh gradient blobs - only visible in dark mode on desktop */}
+      <div className="hidden dark:md:block">
         {/* Purple blob - top left */}
-        <div 
+        <div
           className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px]
-                     bg-[hsl(var(--blob-purple))] rounded-full 
-                     blur-[120px] opacity-60 animate-blob"
+                     bg-[hsl(var(--blob-purple))] rounded-full
+                     blur-[80px] opacity-50 animate-blob"
         />
-        
+
         {/* Indigo blob - bottom right */}
-        <div 
+        <div
           className="absolute bottom-[-30%] right-[-15%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px]
-                     bg-[hsl(var(--blob-indigo))] rounded-full 
-                     blur-[100px] opacity-50 animate-blob animation-delay-2000"
+                     bg-[hsl(var(--blob-indigo))] rounded-full
+                     blur-[70px] opacity-40 animate-blob animation-delay-2000"
         />
-        
+
         {/* Blue blob - center right */}
-        <div 
+        <div
           className="absolute top-[30%] right-[10%] w-[45vw] h-[45vw] max-w-[500px] max-h-[500px]
-                     bg-[hsl(var(--blob-blue))] rounded-full 
-                     blur-[80px] opacity-40 animate-blob animation-delay-4000"
-        />
-        
-        {/* Secondary purple blob - bottom left */}
-        <div 
-          className="absolute bottom-[10%] left-[5%] w-[35vw] h-[35vw] max-w-[400px] max-h-[400px]
-                     bg-[hsl(var(--blob-purple))] rounded-full 
-                     blur-[90px] opacity-35 animate-blob animation-delay-2000"
+                     bg-[hsl(var(--blob-blue))] rounded-full
+                     blur-[60px] opacity-35 animate-blob animation-delay-4000"
         />
       </div>
       

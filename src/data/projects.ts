@@ -23,7 +23,7 @@ export const projects: Project[] = [
     category: "Web",
     achievement:
       "Plataforma digital dedicada a la preservación y difusión del patrimonio cinematográfico cubano con búsqueda avanzada.",
-    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=675&fit=crop&auto=format",
+    image: "/projects/cine-cubano.webp",
     tech: ["React", "Vite", "Tailwind CSS", "JSON Data"],
     liveUrl: "https://cine-cuba.vercel.app/", // 👈 Recuerda poner la URL real si la tienes
     year: "2026",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     subtitle: "Hubert de Blanck",
     category: "Web",
     achievement: "Digitalización completa de la cartelera teatral con un sistema dinámico.",
-    image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=1200&h=675&fit=crop&auto=format",
+    image: "/projects/hubert-de-blanck.webp",
     tech: ["Next.js", "Tailwind CSS", "Express", "MySQL"],
     liveUrl: "https://hubertdeblanck.netlify.app/",
     year: "2024",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     subtitle: "Landing de Alto Rendimiento",
     category: "IA",
     achievement: "Landing page de alto rendimiento optimizada para SEO y analíticas avanzadas de usuario.",
-    image: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=675&fit=crop&auto=format",
+    image: "/projects/imageai-studio.webp",
     tech: ["React", "Vite", "Vercel"],
     liveUrl: "https://imageai-studio.netlify.app/",
     year: "2024",
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     subtitle: "Fitness Tech Platform",
     category: "Web",
     achievement: "Interfaz de usuario de alta fidelidad diseñada para el sector fitness con despliegue ultrarrápido.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=675&fit=crop&auto=format",
+    image: "/projects/vibras-fitness.webp",
     tech: ["React", "Tailwind", "Vercel"],
     liveUrl: "https://vibras-path-forge.vercel.app/",
     year: "2024",
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     subtitle: "Web Corporativa & AI Assistant",
     category: "Web", // Podría ser "IA" también, pero al ser web corporativa encaja bien aquí
     achievement: "Plataforma de salud con asistente virtual inteligente para atención y gestión 24/7.",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=675&fit=crop&auto=format", // Imagen médica profesional (tonos azules/teal)
+    image: "/projects/clinica-salut.webp",
     tech: ["React", "Tailwind CSS", "AI Integration", "Shadcn UI"],
     liveUrl: "https://barcelona-health-hub.vercel.app/", // 👈 ¡Recuerda poner aquí la URL si la tienes!
     year: "2024",
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     subtitle: "Plataforma Comercial",
     category: "Web",
     achievement: "Sistema robusto de pagos con Stripe y arquitectura escalable para gestión de stock en tiempo real.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
+    image: "/projects/ecommerce-enterprise.webp",
     tech: ["Node.js", "Stripe", "React"],
     liveUrl: "#",
     year: "2023",

@@ -1,14 +1,12 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getProjectBySlug, getNextProject, getPreviousProject } from "@/data/projects";
 import { ArrowLeft, ArrowRight, ExternalLink, Calendar, Tag, Layers } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import AnimatedBackground from "@/components/ui/animated-background";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const project = slug ? getProjectBySlug(slug) : undefined;
   const nextProject = slug ? getNextProject(slug) : undefined;
   const prevProject = slug ? getPreviousProject(slug) : undefined;
@@ -22,7 +20,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen flex items-center justify-center">
         <AnimatedBackground />
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Proyecto no encontrado</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">Proyecto no encontrado</h1>
           <Link to="/#proyectos" className="text-primary hover:underline">
             Volver a proyectos
           </Link>
@@ -31,15 +29,7 @@ const ProjectDetail = () => {
     );
   }
 
-  const getProjectImage = () => {
-    if (project.image.startsWith("/") && !project.image.startsWith("/api")) {
-      return project.image;
-    }
-    if (project.liveUrl && project.liveUrl !== "#") {
-      return `/api/screenshot?url=${encodeURIComponent(project.liveUrl)}&t=${Date.now()}`;
-    }
-    return project.image;
-  };
+  const getProjectImage = () => project.image;
 
   return (
     <div className="min-h-screen">
@@ -48,7 +38,7 @@ const ProjectDetail = () => {
       <div className="fixed top-24 left-6 z-50">
         <Link
           to="/#proyectos"
-          className="flex items-center gap-2 px-4 py-2 bg-projects-card/80 backdrop-blur-sm border border-projects-border rounded-full text-sm text-muted-foreground hover:text-white hover:border-white/30 transition-all duration-300"
+          className="flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-300"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver
@@ -62,9 +52,9 @@ const ProjectDetail = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4 animate-fade-in">
             {project.subtitle}
           </p>
-          
+
           {/* Title */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1] animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.1] animate-fade-in" style={{ animationDelay: "0.1s" }}>
             {project.title}
           </h1>
 
@@ -85,15 +75,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Hero Image */}
-          <div className="relative aspect-video rounded-xl overflow-hidden bg-projects-card border border-projects-border shadow-elegant animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-card border border-border shadow-elegant animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <img
               src={getProjectImage()}
               alt={project.title}
               className="w-full h-full object-cover"
               onError={(e) => {
-                if (e.currentTarget.src !== window.location.origin + project.image) {
-                  e.currentTarget.src = project.image;
-                }
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/placeholder.svg";
               }}
             />
           </div>
@@ -105,7 +94,7 @@ const ProjectDetail = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-colors"
               >
                 Ver Proyecto Live
                 <ExternalLink className="w-4 h-4" />
@@ -124,7 +113,7 @@ const ProjectDetail = () => {
               <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 01 — El Problema
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 tracking-tight">
                 Desafío inicial
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
@@ -137,7 +126,7 @@ const ProjectDetail = () => {
               <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 02 — La Solución
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 tracking-tight">
                 Enfoque técnico
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
@@ -150,16 +139,16 @@ const ProjectDetail = () => {
               <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground/60 mb-6">
                 03 — Resultados
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 tracking-tight">
                 Impacto medible
               </h2>
               <div className="flex flex-col gap-4">
                 {project.results.map((result, index) => (
                   <div
                     key={index}
-                    className="py-6 border-b border-projects-border last:border-0"
+                    className="py-6 border-b border-border last:border-0"
                   >
-                    <p className="text-lg text-white/90 leading-relaxed">{result}</p>
+                    <p className="text-lg text-foreground/90 leading-relaxed">{result}</p>
                   </div>
                 ))}
               </div>
@@ -170,14 +159,14 @@ const ProjectDetail = () => {
               <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-medium">
                 04 — Stack Tecnológico
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
                 Herramientas utilizadas
               </h2>
               <div className="flex flex-wrap gap-3">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-5 py-2.5 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-full"
+                    className="px-5 py-2.5 text-sm font-medium text-foreground bg-foreground/10 border border-foreground/20 rounded-full"
                   >
                     {tech}
                   </span>
@@ -190,19 +179,19 @@ const ProjectDetail = () => {
 
       {/* Gallery Section (if images exist) */}
       {project.gallery && project.gallery.length > 0 && (
-        <section className="py-16 md:py-24 border-t border-projects-border">
+        <section className="py-16 md:py-24 border-t border-border">
           <div className="container mx-auto px-6 max-w-6xl">
             <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-medium text-center">
               Galería
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-12 text-center">
               Capturas del proyecto
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {project.gallery.map((img, index) => (
                 <div
                   key={index}
-                  className="aspect-video rounded-xl overflow-hidden bg-projects-card border border-projects-border"
+                  className="aspect-video rounded-xl overflow-hidden bg-card border border-border"
                 >
                   <img
                     src={img}
@@ -217,20 +206,20 @@ const ProjectDetail = () => {
       )}
 
       {/* Project Navigation */}
-      <section className="py-16 md:py-24 border-t border-projects-border">
+      <section className="py-16 md:py-24 border-t border-border">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Previous Project */}
             {prevProject && (
               <Link
                 to={`/proyecto/${prevProject.slug}`}
-                className="group p-6 md:p-8 bg-projects-card border border-projects-border rounded-xl hover:border-white/30 transition-all duration-300"
+                className="group p-6 md:p-8 bg-card border border-border rounded-xl hover:border-foreground/30 transition-all duration-300"
               >
                 <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2 flex items-center gap-2">
                   <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                   Proyecto anterior
                 </p>
-                <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-primary-foreground transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {prevProject.title}
                 </h3>
               </Link>
@@ -241,7 +230,7 @@ const ProjectDetail = () => {
               <Link
                 to={`/proyecto/${nextProject.slug}`}
                 className={cn(
-                  "group p-6 md:p-8 bg-projects-card border border-projects-border rounded-xl hover:border-white/30 transition-all duration-300 text-right",
+                  "group p-6 md:p-8 bg-card border border-border rounded-xl hover:border-foreground/30 transition-all duration-300 text-right",
                   !prevProject && "md:col-start-2"
                 )}
               >
@@ -249,7 +238,7 @@ const ProjectDetail = () => {
                   Siguiente proyecto
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </p>
-                <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-primary-foreground transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {nextProject.title}
                 </h3>
               </Link>
@@ -259,9 +248,9 @@ const ProjectDetail = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 border-t border-projects-border">
+      <section className="py-16 md:py-24 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             ¿Tienes un proyecto similar en mente?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -271,7 +260,7 @@ const ProjectDetail = () => {
             href="https://calendly.com/enrique-designer2022/30min"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-colors"
           >
             Hablemos
             <ArrowRight className="w-4 h-4" />

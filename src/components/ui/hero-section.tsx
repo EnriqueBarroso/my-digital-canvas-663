@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react"; // 1. Importamos FileText
-import profileImage from "@/assets/profile-image.png";
+import profileImage from "@/assets/profile-image.webp";
 import { Typewriter } from "@/components/ui/typewriter"; 
 import HeroBackground from "@/components/ui/hero-background";
 
