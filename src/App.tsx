@@ -10,6 +10,7 @@ import { lazy, Suspense } from "react";
 
 // Lazy load de páginas — solo se descargan cuando se navega a ellas
 const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -33,6 +34,7 @@ const App = () => (
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Index />} />
+                <Route path="/sobre-mi" element={<About />} />
                 <Route path="/proyecto/:slug" element={<ProjectDetail />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

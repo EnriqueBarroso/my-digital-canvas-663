@@ -1,68 +1,96 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Menu, X } from "lucide-react";
 
+const navItems = [
+  { id: "home",      label: "Inicio" },
+  { id: "about",     label: "Sobre mí", route: "/sobre-mi" },
+  { id: "skills",    label: "Habilidades" },
+  { id: "proyectos", label: "Proyectos" },
+  { id: "contacto",  label: "Contacto" },
+];
+
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const navItems = [
-    { id: "home", label: "Inicio" },
-    { id: "about", label: "Sobre mí" },
-    { id: "skills", label: "Habilidades" },
-    { id: "proyectos", label: "Proyectos" },
-    { id: "contacto", label: "Contacto" },
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
-
+  // Scroll spy — only active on "/"
   useEffect(() => {
+    if (location.pathname !== "/") return;
+
     const handleScroll = () => {
-      const sections = navItems.map(item => item.id);
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
+      const ids = navItems.filter(i => !i.route).map(i => i.id);
+      const current = ids.find(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
           return rect.top <= 100 && rect.bottom >= 100;
         }
         return false;
       });
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
+      if (current) setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
+
+  // Execute pending scroll after navigating back to "/"
+  useEffect(() => {
+    if (pendingScroll && location.pathname === "/") {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(pendingScroll);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+        setPendingScroll(null);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, pendingScroll]);
 
   // Bloquear scroll cuando el menú está abierto
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isMenuOpen]);
+
+  const handleNavClick = (item: typeof navItems[0]) => {
+    // "Sobre mí" → route-based navigation
+    if (item.route) {
+      navigate(item.route);
+      setIsMenuOpen(false);
+      return;
+    }
+
+    // Scroll-based items
+    if (location.pathname === "/") {
+      const el = document.getElementById(item.id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
+    } else {
+      setPendingScroll(item.id);
+      navigate("/");
+      setIsMenuOpen(false);
+    }
+  };
+
+  const isActive = (item: typeof navItems[0]) => {
+    if (item.route) return location.pathname === item.route;
+    return location.pathname === "/" && activeSection === item.id;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-colors duration-300">
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo / Título */}
-          <div 
+          <div
             className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer"
-            onClick={() => scrollToSection('home')}
+            onClick={() => handleNavClick(navItems[0])}
           >
             Mi Portafolio
           </div>
@@ -73,12 +101,10 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={cn(
                     "text-sm font-medium transition-smooth hover:text-primary",
-                    activeSection === item.id 
-                      ? "text-primary" 
-                      : "text-muted-foreground"
+                    isActive(item) ? "text-primary" : "text-muted-foreground"
                   )}
                 >
                   {item.label}
@@ -99,17 +125,17 @@ const Navigation = () => {
               aria-label="Toggle menu"
             >
               <div className="relative w-5 h-5">
-                <Menu 
+                <Menu
                   className={cn(
                     "absolute inset-0 w-5 h-5 transition-all duration-300",
                     isMenuOpen ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"
-                  )} 
+                  )}
                 />
-                <X 
+                <X
                   className={cn(
                     "absolute inset-0 w-5 h-5 transition-all duration-300",
                     isMenuOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"
-                  )} 
+                  )}
                 />
               </div>
             </button>
@@ -125,13 +151,11 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={cn(
                     "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-colors duration-200",
                     "hover:bg-muted hover:pl-6",
-                    activeSection === item.id 
-                      ? "text-primary bg-muted" 
-                      : "text-foreground"
+                    isActive(item) ? "text-primary bg-muted" : "text-foreground"
                   )}
                 >
                   {item.label}
