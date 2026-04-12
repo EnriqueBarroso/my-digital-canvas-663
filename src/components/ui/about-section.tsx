@@ -1,17 +1,17 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code2, Brain, Building2, Ruler } from "lucide-react"; // Nuevos iconos importados
+import { Code2, Brain, Building2, Ruler } from "lucide-react";
 
 const AboutSection = () => {
   const milestones = [
     {
       year: "2024 - Presente",
-      title: "Desarrollador Full Stack & IA Specialist",
-      company: "Proyectos Tech & Freelance",
+      title: "Desarrollador Full Stack",
+      company: "Proyectos Freelance",
       description:
-        "Aplico la lógica ingenieril al desarrollo de software. Creación de SaaS como DevIA, integración de modelos LLM y arquitectura de sistemas escalables.",
+        "Construyo aplicaciones web modernas end-to-end con foco en rendimiento, SEO y experiencia de usuario. Proyectos en producción como LaChopin (marketplace), Hola Camarada (hub de medios) y webs institucionales con CMS a medida.",
       icon: Brain,
-      skills: ["React", "Python", "Arquitectura de Software", "Automatización"],
+      skills: ["React", "Next.js", "TypeScript", "Supabase"],
       type: "work"
     },
     {
@@ -21,7 +21,7 @@ const AboutSection = () => {
       description:
         "Tras mi llegada a España, identifiqué en la programación el siguiente paso lógico a mi carrera. Traduje mi experiencia diseñando planos a diseñar código limpio y estructurado.",
       icon: Code2,
-      skills: ["TypeScript", "Next.js", "Algoritmia", "Bases de Datos"],
+      skills: ["TypeScript", "React", "Algoritmia", "Bases de Datos"],
       type: "education"
     },
     {
@@ -60,56 +60,74 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-5xl mx-auto relative">
           {/* Línea vertical central */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px h-full w-0.5 bg-gradient-to-b from-primary/20 via-primary/50 to-primary/20"></div>
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-primary/20 via-primary/50 to-primary/20"></div>
 
           <div className="space-y-12">
-            {milestones.map((item, index) => (
-              <div key={index} className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group`}>
-                
-                {/* Punto del timeline */}
-                <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-background border-4 border-primary/30 z-10 flex items-center justify-center shadow-[0_0_0_4px_rgba(0,0,0,0.1)] group-hover:border-primary group-hover:scale-110 transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
-                </div>
+            {milestones.map((item, index) => {
+              const isLeft = index % 2 === 0; // 0,2,... izquierda; 1,3,... derecha
+              return (
+                <div key={index} className="relative group">
+                  {/* Grid de 2 columnas en desktop, 1 columna en mobile */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
+                    {/* Tarjeta (posición depende de isLeft en desktop) */}
+                    <div
+                      className={`
+                        pl-14 md:pl-0
+                        ${isLeft ? "md:col-start-1 md:pr-8 md:text-right" : "md:col-start-2 md:pl-8"}
+                      `}
+                    >
+                      <Card className="p-6 bg-gradient-card dark:bg-card hover:shadow-card-hover transition-all duration-300 border-border/50 relative overflow-hidden group-hover:-translate-y-1">
+                        {/* Icono de fondo decorativo */}
+                        <item.icon className="absolute -right-4 -bottom-4 w-24 h-24 text-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform rotate-12" />
 
-                {/* Espaciador para escritorio */}
-                <div className="hidden md:block w-5/12"></div>
+                        <div
+                          className={`flex items-center gap-3 mb-2 ${
+                            isLeft ? "md:justify-end" : ""
+                          }`}
+                        >
+                          <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
+                            {item.year}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                            {item.type === "work" ? "Experiencia" : "Hito Académico"}
+                          </span>
+                        </div>
 
-                {/* Tarjeta de contenido */}
-                <div className="w-[calc(100%-3rem)] md:w-5/12 ml-12 md:ml-0">
-                  <Card className="p-6 bg-gradient-card dark:bg-card hover:shadow-card-hover transition-all duration-300 border-border/50 relative overflow-hidden group-hover:-translate-y-1">
-                    
-                    {/* Icono de fondo decorativo */}
-                    <item.icon className="absolute -right-4 -bottom-4 w-24 h-24 text-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform rotate-12" />
+                        <h3 className="text-xl font-bold mb-1 text-foreground">{item.title}</h3>
+                        <p className="text-primary font-medium text-sm mb-3">{item.company}</p>
 
-                    <div className="flex items-center gap-3 mb-2">
-                      <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
-                        {item.year}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
-                        {item.type === "work" ? "Experiencia" : "Hito Académico"}
-                      </span>
+                        <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                          {item.description}
+                        </p>
+
+                        <div
+                          className={`flex flex-wrap gap-2 ${
+                            isLeft ? "md:justify-end" : ""
+                          }`}
+                        >
+                          {item.skills.map((skill) => (
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="text-xs bg-muted/50 hover:bg-muted dark:bg-secondary/20"
+                            >
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </Card>
                     </div>
+                  </div>
 
-                    <h3 className="text-xl font-bold mb-1 text-foreground">{item.title}</h3>
-                    <p className="text-primary font-medium text-sm mb-3">{item.company}</p>
-                    
-                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                      {item.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {item.skills.map((skill) => (
-                        <Badge key={skill} variant="secondary" className="text-xs bg-muted/50 hover:bg-muted dark:bg-secondary/20">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </Card>
+                  {/* Punto del timeline - posicionado absolutamente sobre la línea */}
+                  <div className="absolute left-4 md:left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background border-4 border-primary/30 z-10 flex items-center justify-center shadow-[0_0_0_4px_rgba(0,0,0,0.1)] group-hover:border-primary group-hover:scale-110 transition-all duration-300">
+                    <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

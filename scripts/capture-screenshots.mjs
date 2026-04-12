@@ -78,4 +78,4 @@ async function captureScreenshots() {
   console.log("\nDone.");
 }
 
-captureScreenshots();
+captureScreenshots(); 
