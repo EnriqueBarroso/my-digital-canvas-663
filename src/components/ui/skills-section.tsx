@@ -32,6 +32,7 @@ const categories: SkillCategory[] = [
     description: "APIs robustas, validación tipada y modelos relacionales.",
     skills: [
       "Next.js API Routes",
+      "NestJS 11",
       "Server Actions",
       "Supabase (PostgreSQL)",
       "Prisma ORM",
@@ -62,6 +63,7 @@ const categories: SkillCategory[] = [
     description: "Del commit a producción con calidad y visibilidad.",
     skills: [
       "Git & GitHub",
+      "Railway",
       "Vercel",
       "ESLint",
       "react-helmet-async",
