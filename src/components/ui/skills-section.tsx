@@ -99,7 +99,12 @@ export const SkillsSection = () => {
             return (
               <div
                 key={category.title}
-                className="group relative rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-6 md:p-8 hover:border-violet-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/10"
+                className="group relative rounded-2xl p-6 md:p-8 hover:border-violet-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/10"
+                style={{
+                  background: "rgba(13, 18, 37, 0.8)",
+                  border: "1px solid rgba(79, 110, 247, 0.12)",
+                  backdropFilter: "blur(12px)",
+                }}
               >
                 {/* Gradient overlay */}
                 <div
@@ -109,8 +114,14 @@ export const SkillsSection = () => {
                 <div className="relative">
                   {/* Icon + Title */}
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-violet-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-6 h-6 text-violet-400" />
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(79,110,247,0.15) 0%, rgba(99,102,241,0.08) 100%)",
+                        border: "1px solid rgba(79,110,247,0.25)",
+                        boxShadow: "0 0 20px rgba(79,110,247,0.1)",
+                      }}
+                    >
+                      <Icon className="w-5 h-5 text-[#818CF8]" />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold">
                       {category.title}
