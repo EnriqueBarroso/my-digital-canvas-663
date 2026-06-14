@@ -84,6 +84,7 @@ const Navigation = () => {
   };
 
   return (
+    <>
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-colors duration-300">
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
@@ -142,30 +143,31 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+    </nav>
 
-      {/* Menú Móvil Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-x-0 top-[73px] bottom-0 z-40 md:hidden border-t border-border bg-background">
-          <div className="container mx-auto px-6 py-8">
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={cn(
-                    "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-colors duration-200",
-                    "hover:bg-muted hover:pl-6",
-                    isActive(item) ? "text-primary bg-muted" : "text-foreground"
-                  )}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+    {/* Menú Móvil Overlay */}
+    {isMenuOpen && (
+      <div className="fixed inset-x-0 top-[73px] bottom-0 z-50 md:hidden border-t border-white/10 bg-[#050A14] overflow-y-auto">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex flex-col space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item)}
+                className={cn(
+                  "text-left text-2xl font-medium py-4 px-4 rounded-xl transition-colors duration-200",
+                  "hover:bg-white/5 hover:pl-6",
+                  isActive(item) ? "text-[#818CF8] bg-white/5" : "text-white"
+                )}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+    )}
+    </>
   );
 };
 
