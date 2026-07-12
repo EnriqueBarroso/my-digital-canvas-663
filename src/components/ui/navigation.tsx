@@ -90,10 +90,10 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           {/* Logo / Título */}
           <div
-            className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer"
+            className="text-xl font-bold tracking-wider bg-gradient-primary bg-clip-text text-transparent cursor-pointer"
             onClick={() => handleNavClick(navItems[0])}
           >
-            Mi Portafolio
+            EB
           </div>
 
           {/* Menú de Escritorio */}

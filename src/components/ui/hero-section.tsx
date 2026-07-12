@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react"; // 1. Importamos FileText
+import { ArrowDown, Github, Linkedin, Mail, FileText, Briefcase } from "lucide-react"; // 1. Importamos FileText
 import profileImage from "@/assets/profile-image.webp";
-import { Typewriter } from "@/components/ui/typewriter"; 
+import { Typewriter } from "@/components/ui/typewriter";
 import HeroBackground from "@/components/ui/hero-background";
 
 const HeroSection = () => {
@@ -100,6 +101,18 @@ const HeroSection = () => {
                     Descargar CV
                     <FileText className="ml-2 h-4 w-4" />
                 </a>
+            </Button>
+
+            {/* 4. BOTÓN BIOPAGE — acción terciaria, hacia servicios freelance */}
+            <Button
+                variant="ghost"
+                className="opacity-70 hover:opacity-100 transition-opacity duration-500 w-full sm:w-auto text-muted-foreground hover:text-foreground"
+                asChild
+            >
+                <Link to="/servicios">
+                    Biopage
+                    <Briefcase className="ml-2 h-4 w-4" />
+                </Link>
             </Button>
           </div>
 
