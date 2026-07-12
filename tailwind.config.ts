@@ -63,6 +63,11 @@ export default {
           card: "hsl(var(--project-card-bg))",
           border: "hsl(var(--project-card-border))",
         },
+        "biopage-dark": "#1A1A1A",
+        "biopage-orange": "#E85D30",
+      },
+      fontFamily: {
+        biopage: ["'Space Grotesk'", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -128,6 +133,10 @@ export default {
             transform: "translate(10px, 20px) scale(1.02)",
           },
         },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +145,7 @@ export default {
         "slide-in-left": "slide-in-left 0.6s ease-out",
         "float": "float 3s ease-in-out infinite",
         "blob": "blob 20s ease-in-out infinite",
+        "marquee": "marquee 25s linear infinite",
       },
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
