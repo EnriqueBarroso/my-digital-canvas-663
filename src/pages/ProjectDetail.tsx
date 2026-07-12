@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getProjectBySlug, getNextProject, getPreviousProject } from "@/data/projects";
 import { ArrowLeft, ArrowRight, ExternalLink, Calendar, Tag, Layers } from "lucide-react";
@@ -7,6 +7,8 @@ import AnimatedBackground from "@/components/ui/animated-background";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const backTo = (location.state as { from?: string } | null)?.from ?? "/";
   const project = slug ? getProjectBySlug(slug) : undefined;
   const nextProject = slug ? getNextProject(slug) : undefined;
   const prevProject = slug ? getPreviousProject(slug) : undefined;
@@ -21,7 +23,7 @@ const ProjectDetail = () => {
         <AnimatedBackground />
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">Proyecto no encontrado</h1>
-          <Link to="/#proyectos" className="text-primary hover:underline">
+          <Link to={backTo} className="text-primary hover:underline">
             Volver a proyectos
           </Link>
         </div>
@@ -37,7 +39,7 @@ const ProjectDetail = () => {
       {/* Back Navigation */}
       <div className="fixed top-24 left-6 z-50">
         <Link
-          to="/#proyectos"
+          to={backTo}
           className="flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-300"
         >
           <ArrowLeft className="w-4 h-4" />
