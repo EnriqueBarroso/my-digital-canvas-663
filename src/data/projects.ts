@@ -161,6 +161,36 @@ export const projects: Project[] = [
     ],
     gallery: ["/projects/hubert-de-blanck.webp"],
   },
+  {
+    slug: "job-alert-bot",
+    title: "Job Alert Bot",
+    subtitle: "Bot de alertas de empleo con filtrado inteligente por stack y ubicación",
+    category: "Web",
+    achievement:
+      "Sistema de automatización en producción que agrega 4 APIs de empleo, deduplica contra PostgreSQL y notifica por Telegram — sin servidor propio, con GitHub Actions ejecutándose cada 4 horas",
+    image: "/projects/job-alert-bot.webp",
+    tech: [
+      "Node.js",
+      "Supabase",
+      "PostgreSQL",
+      "GitHub Actions",
+      "Telegram Bot API",
+      "Automatización",
+    ],
+    liveUrl: "https://github.com/EnriqueBarroso/job-alert-bot",
+    year: "2026",
+    problem:
+      "Buscar trabajo remoto implica revisar manualmente varias plataformas de empleo cada día, con ofertas duplicadas entre fuentes, descripciones que mencionan tecnologías o niveles de seniority sin relación real con el puesto, y ninguna forma de filtrar por stack técnico o ubicación sin perder tiempo. Mantener ese proceso al día a mano es tedioso y es fácil que pasen desapercibidas ofertas relevantes publicadas fuera de horario.",
+    solution:
+      "Construí un bot de automatización que agrega ofertas de empleo de 4 fuentes distintas (RemoteOK, Remotive, Himalayas y Adzuna), aplica lógica de filtrado por stack técnico y ubicación geográfica, y deduplica entre fuentes que publican la misma oferta con títulos ligeramente distintos antes de entregar alertas formateadas por Telegram Bot API. Todo corre sobre GitHub Actions con un cron cada 4 horas, sin servidor propio ni infraestructura que mantener. El reto técnico más interesante fue depurar falsos positivos reales en el filtrado: una tag mal asignada por una de las APIs colaba ofertas irrelevantes, y la palabra 'senior' aparecía en descripciones sin referirse al puesto en sí. Resolverlo significó iterar contra datos reales en producción en vez de asumir que el filtro inicial funcionaba.",
+    results: [
+      "Integración con 4 APIs de empleo distintas (RemoteOK, Remotive, Himalayas, Adzuna) normalizando formatos heterogéneos en un único pipeline de filtrado.",
+      "Deduplicación contra PostgreSQL (Supabase) entre fuentes que publican la misma oferta con títulos ligeramente distintos, evitando alertas repetidas.",
+      "Filtrado por stack técnico y ubicación geográfica depurado contra datos reales de producción, corrigiendo falsos positivos como tags mal asignadas o coincidencias de palabra suelta (ej. 'senior' fuera de contexto).",
+      "Notificaciones en tiempo real formateadas vía Telegram Bot API, con despliegue 100% serverless sobre GitHub Actions (cron cada 4 horas) y sin servidor propio.",
+    ],
+    gallery: [],
+  },
 ];
 
 export const getNextProject = (currentSlug: string): Project => {
